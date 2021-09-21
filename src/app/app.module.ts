@@ -12,8 +12,8 @@ import { ToolbarComponent } from './toolbar/toolbar.component'
 // Angular Material improts
 import { MatFormFieldModule } from '@angular/material/form-field'
 import { MatInputModule } from '@angular/material/input';
-import {MatToolbarModule} from '@angular/material/toolbar';
-import {MatIconModule} from '@angular/material/icon';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatIconModule } from '@angular/material/icon';
 import { HomeComponent } from './home/home.component';
 
 @NgModule({
