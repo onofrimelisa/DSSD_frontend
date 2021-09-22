@@ -1,13 +1,81 @@
 <div class="container">
-	<p>
-		<mat-form-field appearance="outline">
-			<mat-label>Nombre</mat-label>
-			<input matInput
-				placeholder="Nombre">
-			<mat-icon matSuffix>
-				sentiment_very_satisfied
-			</mat-icon>
-			<mat-hint>Alfanumérico</mat-hint>
-		</mat-form-field>
-	</p>
+
+	<h1>
+		Registrar sociedad anónima
+	</h1>
+
+	<form [formGroup]="formGroup"
+		(ngSubmit)="onSubmit()">
+		<p>
+			<mat-form-field appearance="outline">
+				<mat-label>Nombre</mat-label>
+				<input formControlName="name"
+					matInput
+					placeholder="Nombre"
+					required
+					name="name">
+				<mat-icon matSuffix>
+					sentiment_very_satisfied
+				</mat-icon>
+				<mat-error *ngIf="formGroup.controls.name.invalid">
+					{{getRequiredErrorMessage(formGroup.controls.name)}}
+				</mat-error>
+				<mat-hint>Alfanumérico</mat-hint>
+			</mat-form-field>
+		</p>
+		<p>
+			<mat-form-field appearance="outline">
+				<mat-label>Domicilio Real</mat-label>
+				<input formControlName="domicilioReal"
+					matInput
+					placeholder="Domicilio Real"
+					required>
+				<mat-icon matSuffix>
+					sentiment_very_satisfied
+				</mat-icon>
+				<mat-error *ngIf="formGroup.controls.domicilioReal.invalid">
+					{{getRequiredErrorMessage(formGroup.controls.domicilioReal)}}
+				</mat-error>
+				<mat-hint>Alfanumérico</mat-hint>
+			</mat-form-field>
+		</p>
+		<p>
+			<mat-form-field appearance="outline">
+				<mat-label>Domicilio Legal</mat-label>
+				<input formControlName="domicilioLegal"
+					matInput
+					placeholder="Domicilio Legal"
+					required>
+				<mat-icon matSuffix>
+					sentiment_very_satisfied
+				</mat-icon>
+				<mat-error *ngIf="formGroup.controls.domicilioLegal.invalid">
+					{{getRequiredErrorMessage(formGroup.controls.domicilioLegal)}}
+				</mat-error>
+				<mat-hint>Alfanumérico</mat-hint>
+			</mat-form-field>
+		</p>
+		<p>
+			<mat-form-field appearance="outline">
+				<mat-label>Email del apoderado</mat-label>
+				<input formControlName="email"
+					matInput
+					placeholder="email@example.com"
+					required>
+				<mat-error *ngIf="formGroup.controls.email.invalid">
+					{{getEmailErrorMessage(formGroup.controls.email)}}
+				</mat-error>
+				<mat-icon matSuffix>
+					sentiment_very_satisfied
+				</mat-icon>
+				<mat-hint>Email</mat-hint>
+			</mat-form-field>
+		</p>
+
+		<button [disabled]="!formGroup.valid"
+			mat-raised-button
+			color="primary">
+			Registrar
+		</button>
+	</form>
 </div>
