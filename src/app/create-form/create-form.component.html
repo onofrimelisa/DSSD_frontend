@@ -135,7 +135,7 @@
 									matInput
 									placeholder="Apellido"
 									required>
-								<mat-icon matSuffix>home</mat-icon>
+								<mat-icon matSuffix>person_pin</mat-icon>
 								<mat-error *ngIf="sociosGroup.controls.apellido.invalid">
 									{{getRequiredErrorMessage(sociosGroup.controls.apellido)}}
 								</mat-error>
@@ -146,16 +146,19 @@
 					<div class="col">
 						<p>
 							<mat-form-field appearance="outline">
-								<mat-label>Porcentaje</mat-label>
+								<mat-label>
+									Porcentaje de aportes
+								</mat-label>
 								<input formControlName="porcentaje"
+									type="number"
 									matInput
 									placeholder="Porcentaje"
 									required>
-								<mat-icon matSuffix>home</mat-icon>
+								<mat-icon matSuffix>person_pin</mat-icon>
 								<mat-error *ngIf="sociosGroup.controls.porcentaje.invalid">
 									{{getRequiredErrorMessage(sociosGroup.controls.porcentaje)}}
 								</mat-error>
-								<mat-hint>Alfanumérico</mat-hint>
+								<mat-hint>Porcentaje</mat-hint>
 							</mat-form-field>
 						</p>
 					</div>

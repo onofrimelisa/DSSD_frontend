@@ -48,17 +48,33 @@ export class CreateFormComponent {
   }
 
   addSocio() {
-    let newSocio = new Socio(this.sociosGroup.value.nombre, this.sociosGroup.value.apellido, this.sociosGroup.value.aportes);
+    let newSocio = new Socio(this.sociosGroup.value.nombre, this.sociosGroup.value.apellido, this.sociosGroup.value.porcentaje);
     this.socios?.push(newSocio);
+
+    this.sociosValidos = this.validPercentage() ? true : false;
+    console.log(this.sociosValidos);
+
+  }
+
+  accumPercentage() {
+    let acc = this.socios.reduce((acc, socio) => {
+      return acc + socio.aportes;
+    }, 0);
+
+    console.log(acc);
+
+    return acc;
+
+  }
+
+  validPercentage() {
+    return (this.accumPercentage() == 100);
   }
 
   onSubmit() {
-    if (this.formGroup.invalid) {
+    if ((this.formGroup.invalid) || (!this.validPercentage())) {
       return
     }
-
-    // agregar socios
-
 
     // agregar sociedad anónima
     this.sociedadAnonima = new SociedadAnonima(this.formGroup.value.email, this.formGroup.value.fecha, this.formGroup.value.estatuto, this.formGroup.value.domicilioLegal, this.formGroup.value.domicilioReal, this.formGroup.value.email, this.socios)
