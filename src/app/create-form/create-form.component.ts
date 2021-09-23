@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators, FormGroup, AbstractControl } from '@angular/forms';
-import { SociedadAnonima } from '../interfaces';
+import { SociedadAnonima, Socio } from '../interfaces';
 
 @Component({
   selector: 'app-create-form',
@@ -9,13 +9,24 @@ import { SociedadAnonima } from '../interfaces';
 export class CreateFormComponent {
 
   sociedadAnonima: SociedadAnonima | undefined;
+  socios: Socio[] = [];
+  sociosValidos: boolean = false;
 
   // Form
+  sociosGroup = new FormGroup({
+    nombre: new FormControl('', [Validators.required]),
+    apellido: new FormControl('', [Validators.required]),
+    porcentaje: new FormControl('', [Validators.required]),
+  })
+
   formGroup = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email]),
-    name: new FormControl('', [Validators.required]),
+    nombre: new FormControl('', [Validators.required]),
     domicilioReal: new FormControl('', [Validators.required]),
     domicilioLegal: new FormControl('', [Validators.required]),
+    fecha: new FormControl('', [Validators.required]),
+    estatuto: new FormControl('', [Validators.required]),
+    socios: this.sociosGroup
   })
 
   getEmailErrorMessage(form: AbstractControl) {
@@ -29,8 +40,6 @@ export class CreateFormComponent {
   }
 
   getRequiredErrorMessage(form: AbstractControl) {
-    console.log(form);
-
     if (form.hasError('required')) {
       return 'Éste campo es requerido';
     }
@@ -38,7 +47,23 @@ export class CreateFormComponent {
     return
   }
 
+  addSocio() {
+    let newSocio = new Socio(this.sociosGroup.value.nombre, this.sociosGroup.value.apellido, this.sociosGroup.value.aportes);
+    this.socios?.push(newSocio);
+  }
+
   onSubmit() {
+    if (this.formGroup.invalid) {
+      return
+    }
+
+    // agregar socios
+
+
+    // agregar sociedad anónima
+    this.sociedadAnonima = new SociedadAnonima(this.formGroup.value.email, this.formGroup.value.fecha, this.formGroup.value.estatuto, this.formGroup.value.domicilioLegal, this.formGroup.value.domicilioReal, this.formGroup.value.email, this.socios)
+
+    console.log(this.sociedadAnonima);
 
   }
 

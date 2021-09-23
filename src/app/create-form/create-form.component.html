@@ -6,73 +6,181 @@
 
 	<form [formGroup]="formGroup"
 		(ngSubmit)="onSubmit()">
-		<p>
-			<mat-form-field appearance="outline">
-				<mat-label>Nombre</mat-label>
-				<input formControlName="name"
-					matInput
-					placeholder="Nombre"
-					required
-					name="name">
-				<mat-icon matSuffix>
-					sentiment_very_satisfied
-				</mat-icon>
-				<mat-error *ngIf="formGroup.controls.name.invalid">
-					{{getRequiredErrorMessage(formGroup.controls.name)}}
-				</mat-error>
-				<mat-hint>Alfanumérico</mat-hint>
-			</mat-form-field>
-		</p>
-		<p>
-			<mat-form-field appearance="outline">
-				<mat-label>Domicilio Real</mat-label>
-				<input formControlName="domicilioReal"
-					matInput
-					placeholder="Domicilio Real"
-					required>
-				<mat-icon matSuffix>
-					sentiment_very_satisfied
-				</mat-icon>
-				<mat-error *ngIf="formGroup.controls.domicilioReal.invalid">
-					{{getRequiredErrorMessage(formGroup.controls.domicilioReal)}}
-				</mat-error>
-				<mat-hint>Alfanumérico</mat-hint>
-			</mat-form-field>
-		</p>
-		<p>
-			<mat-form-field appearance="outline">
-				<mat-label>Domicilio Legal</mat-label>
-				<input formControlName="domicilioLegal"
-					matInput
-					placeholder="Domicilio Legal"
-					required>
-				<mat-icon matSuffix>
-					sentiment_very_satisfied
-				</mat-icon>
-				<mat-error *ngIf="formGroup.controls.domicilioLegal.invalid">
-					{{getRequiredErrorMessage(formGroup.controls.domicilioLegal)}}
-				</mat-error>
-				<mat-hint>Alfanumérico</mat-hint>
-			</mat-form-field>
-		</p>
-		<p>
-			<mat-form-field appearance="outline">
-				<mat-label>Email del apoderado</mat-label>
-				<input formControlName="email"
-					matInput
-					placeholder="email@example.com"
-					required>
-				<mat-error *ngIf="formGroup.controls.email.invalid">
-					{{getEmailErrorMessage(formGroup.controls.email)}}
-				</mat-error>
-				<mat-icon matSuffix>
-					sentiment_very_satisfied
-				</mat-icon>
-				<mat-hint>Email</mat-hint>
-			</mat-form-field>
-		</p>
 
-		<button [disabled]="!formGroup.valid"
+		<div class="row">
+			<div class="col">
+				<p>
+					<mat-form-field appearance="outline">
+						<mat-label>Nombre</mat-label>
+						<input formControlName="nombre"
+							matInput
+							placeholder="Nombre"
+							required>
+						<mat-icon matSuffix>person_pin</mat-icon>
+						<mat-error *ngIf="formGroup.controls.nombre.invalid">
+							{{getRequiredErrorMessage(formGroup.controls.nombre)}}
+						</mat-error>
+						<mat-hint>Alfanumérico</mat-hint>
+					</mat-form-field>
+				</p>
+			</div>
+			<div class="col">
+				<p>
+					<mat-form-field appearance="outline">
+						<mat-label>Domicilio Real</mat-label>
+						<input formControlName="domicilioReal"
+							matInput
+							placeholder="Domicilio Real"
+							required>
+						<mat-icon matSuffix>home</mat-icon>
+						<mat-error *ngIf="formGroup.controls.domicilioReal.invalid">
+							{{getRequiredErrorMessage(formGroup.controls.domicilioReal)}}
+						</mat-error>
+						<mat-hint>Alfanumérico</mat-hint>
+					</mat-form-field>
+				</p>
+			</div>
+			<div class="col">
+				<p>
+					<mat-form-field appearance="outline">
+						<mat-label>Domicilio Legal</mat-label>
+						<input formControlName="domicilioLegal"
+							matInput
+							placeholder="Domicilio Legal"
+							required>
+						<mat-icon matSuffix>home</mat-icon>
+						<mat-error *ngIf="formGroup.controls.domicilioLegal.invalid">
+							{{getRequiredErrorMessage(formGroup.controls.domicilioLegal)}}
+						</mat-error>
+						<mat-hint>Alfanumérico</mat-hint>
+					</mat-form-field>
+				</p>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col">
+				<p>
+					<mat-form-field appearance="outline">
+						<mat-label>Email del apoderado</mat-label>
+						<input formControlName="email"
+							matInput
+							placeholder="email@example.com"
+							required>
+						<mat-error *ngIf="formGroup.controls.email.invalid">
+							{{getEmailErrorMessage(formGroup.controls.email)}}
+						</mat-error>
+						<mat-icon matSuffix>email</mat-icon>
+						<mat-hint>Email</mat-hint>
+					</mat-form-field>
+				</p>
+			</div>
+			<div class="col">
+				<p>
+					<mat-form-field appearance="outline">
+						<mat-label>Fecha de creación</mat-label>
+						<input formControlName="fecha"
+							matInput
+							placeholder="Fecha de creación"
+							required>
+						<mat-error *ngIf="formGroup.controls.fecha.invalid">
+							{{getRequiredErrorMessage(formGroup.controls.fecha)}}
+						</mat-error>
+						<mat-icon matSuffix>date_range</mat-icon>
+					</mat-form-field>
+				</p>
+			</div>
+			<div class="col">
+				<p>
+					<mat-form-field appearance="outline">
+						<mat-label>Estatuto</mat-label>
+						<input formControlName="estatuto"
+							matInput
+							placeholder="Estatuto"
+							required>
+						<mat-error *ngIf="formGroup.controls.fecha.invalid">
+							{{getRequiredErrorMessage(formGroup.controls.estatuto)}}
+						</mat-error>
+						<mat-icon matSuffix>info</mat-icon>
+					</mat-form-field>
+				</p>
+			</div>
+		</div>
+
+		<h2>Agregar socios</h2>
+		<div class="row">
+			<form [formGroup]="sociosGroup">
+				<div class="row">
+					<div class="col">
+						<p>
+							<mat-form-field appearance="outline">
+								<mat-label>Nombre</mat-label>
+								<input formControlName="nombre"
+									matInput
+									placeholder="Nombre"
+									required>
+								<mat-icon matSuffix>person_pin</mat-icon>
+								<mat-error *ngIf="sociosGroup.controls.nombre.invalid">
+									{{getRequiredErrorMessage(sociosGroup.controls.nombre)}}
+								</mat-error>
+								<mat-hint>Alfanumérico</mat-hint>
+							</mat-form-field>
+						</p>
+					</div>
+					<div class="col">
+						<p>
+							<mat-form-field appearance="outline">
+								<mat-label>Apellido</mat-label>
+								<input formControlName="apellido"
+									matInput
+									placeholder="Apellido"
+									required>
+								<mat-icon matSuffix>home</mat-icon>
+								<mat-error *ngIf="sociosGroup.controls.apellido.invalid">
+									{{getRequiredErrorMessage(sociosGroup.controls.apellido)}}
+								</mat-error>
+								<mat-hint>Alfanumérico</mat-hint>
+							</mat-form-field>
+						</p>
+					</div>
+					<div class="col">
+						<p>
+							<mat-form-field appearance="outline">
+								<mat-label>Porcentaje</mat-label>
+								<input formControlName="porcentaje"
+									matInput
+									placeholder="Porcentaje"
+									required>
+								<mat-icon matSuffix>home</mat-icon>
+								<mat-error *ngIf="sociosGroup.controls.porcentaje.invalid">
+									{{getRequiredErrorMessage(sociosGroup.controls.porcentaje)}}
+								</mat-error>
+								<mat-hint>Alfanumérico</mat-hint>
+							</mat-form-field>
+						</p>
+					</div>
+					<div class="col">
+						<button [disabled]="!sociosGroup.valid"
+							(click)="addSocio()"
+							mat-raised-button
+							color="primary">
+							Registrar
+						</button>
+					</div>
+				</div>
+
+			</form>
+		</div>
+
+		<h2>Socios agregados</h2>
+		<div class="row">
+			<div *ngFor="let socio of socios"
+				class="col">
+				Socio
+			</div>
+		</div>
+
+		<button [disabled]="!(formGroup.valid && sociosValidos)"
 			mat-raised-button
 			color="primary">
 			Registrar

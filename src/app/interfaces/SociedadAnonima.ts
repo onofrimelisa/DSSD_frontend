@@ -1,8 +1,9 @@
 import { Socio } from "./Socio";
 
 export class SociedadAnonima {
+  id: number | undefined;
+
   constructor(
-    public id: number,
     public nombre: string,
     public fechaCreacion: string,
     public estatutoConformacion: string,
