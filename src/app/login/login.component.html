@@ -1,0 +1,57 @@
+<br>
+<br>
+
+<div class="d-flex justify-content-center">
+	<h1>Iniciar Sesión</h1>
+</div>
+
+<hr>
+<br>
+
+<div class="d-flex justify-content-center">
+	<form [formGroup]="login"
+		(ngSubmit)="onSubmit()">
+
+		<div class="row">
+			<p>
+				<mat-form-field appearance="outline">
+					<mat-label>Usuario</mat-label>
+					<input formControlName="usuario"
+						matInput
+						placeholder="Usuario"
+						required>
+					<mat-icon matSuffix>person_pin</mat-icon>
+					<mat-error *ngIf="login.controls.usuario.invalid">
+						{{getRequiredErrorMessage(login.controls.usuario)}}
+					</mat-error>
+				</mat-form-field>
+			</p>
+		</div>
+		<div class="row">
+			<p>
+				<mat-form-field appearance="outline">
+					<mat-label>Contraseña</mat-label>
+					<input formControlName="contrasenia"
+						matInput
+						placeholder="Contraseña"
+						required>
+					<mat-icon matSuffix>home</mat-icon>
+					<mat-error *ngIf="login.controls.contrasenia.invalid">
+						{{getRequiredErrorMessage(login.controls.contrasenia)}}
+					</mat-error>
+				</mat-form-field>
+			</p>
+		</div>
+
+		<br>
+
+		<div class="d-flex justify-content-center">
+			<button [disabled]="!login.valid"
+				mat-raised-button
+				color="primary">
+				Iniciar Sesión
+			</button>
+		</div>
+
+	</form>
+</div>

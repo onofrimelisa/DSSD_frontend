@@ -5,13 +5,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-// Components
-import { AppComponent } from './app.component';
-import { CreateFormComponent } from './create-form/create-form.component';
-import { ToolbarComponent } from './toolbar/toolbar.component';
-import { HomeComponent } from './home/home.component';
-
-
 // Angular Material improts
 import { MatFormFieldModule } from '@angular/material/form-field'
 import { MatInputModule } from '@angular/material/input';
@@ -21,6 +14,14 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import { MatGridListModule } from '@angular/material/grid-list';
+
+// Components
+import { AppComponent } from './app.component';
+import { CreateFormComponent } from './create-form/create-form.component';
+import { ToolbarComponent } from './toolbar/toolbar.component';
+import { HomeComponent } from './home/home.component';
+import { LoginComponent } from './login/login.component';
 
 
 @NgModule({
@@ -28,7 +29,8 @@ import { MatNativeDateModule } from '@angular/material/core';
     AppComponent,
     CreateFormComponent,
     ToolbarComponent,
-    HomeComponent
+    HomeComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -43,7 +45,8 @@ import { MatNativeDateModule } from '@angular/material/core';
     MatButtonModule,
     MatChipsModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatGridListModule
   ],
   exports: [
   ],
