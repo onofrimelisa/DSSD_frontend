@@ -5,7 +5,7 @@ export class SociedadAnonima {
 
   constructor(
     public nombre: string,
-    public fechaCreacion: string,
+    public fechaCreacion: Date,
     public estatutoConformacion: string,
     public domicilioLegal: string,
     public domicilioReal: string,

@@ -52,19 +52,12 @@ export class CreateFormComponent {
     this.socios?.push(newSocio);
 
     this.sociosValidos = this.validPercentage() ? true : false;
-    console.log(this.sociosValidos);
-
   }
 
   accumPercentage() {
-    let acc = this.socios.reduce((acc, socio) => {
+    return this.socios.reduce((acc, socio) => {
       return acc + socio.aportes;
     }, 0);
-
-    console.log(acc);
-
-    return acc;
-
   }
 
   validPercentage() {
@@ -77,9 +70,21 @@ export class CreateFormComponent {
     }
 
     // agregar sociedad anónima
-    this.sociedadAnonima = new SociedadAnonima(this.formGroup.value.email, this.formGroup.value.fecha, this.formGroup.value.estatuto, this.formGroup.value.domicilioLegal, this.formGroup.value.domicilioReal, this.formGroup.value.email, this.socios)
+    this.sociedadAnonima = new SociedadAnonima(
+      this.formGroup.value.nombre,
+      this.formGroup.value.fecha,
+      this.formGroup.value.estatuto,
+      this.formGroup.value.domicilioLegal,
+      this.formGroup.value.domicilioReal,
+      this.formGroup.value.email,
+      this.socios
+    );
 
     console.log(this.sociedadAnonima);
+
+  }
+
+  removeSocio(socio: Socio) {
 
   }
 

@@ -75,18 +75,34 @@
 					</mat-form-field>
 				</p>
 			</div>
-			<div class="col">
+			<div class="col pr-4">
 				<p>
 					<mat-form-field appearance="outline">
 						<mat-label>Fecha de creación</mat-label>
-						<input formControlName="fecha"
+
+						<input [matDatepicker]="datepicker"
 							matInput
+							formControlName="fecha"
 							placeholder="Fecha de creación"
 							required>
+						<mat-datepicker-toggle [for]="datepicker"
+							matSuffix></mat-datepicker-toggle>
+						<mat-datepicker #datepicker>
+							<mat-datepicker-actions>
+								<button mat-button
+									matDatepickerCancel>
+									Cancel
+								</button>
+								<button mat-raised-button
+									color="primary"
+									matDatepickerApply>
+									Apply
+								</button>
+							</mat-datepicker-actions>
+						</mat-datepicker>
 						<mat-error *ngIf="formGroup.controls.fecha.invalid">
 							{{getRequiredErrorMessage(formGroup.controls.fecha)}}
 						</mat-error>
-						<mat-icon matSuffix>date_range</mat-icon>
 					</mat-form-field>
 				</p>
 			</div>
@@ -108,7 +124,7 @@
 		</div>
 
 		<h2>Agregar socios</h2>
-		<div class="row">
+		<div class="row ml-1">
 			<form [formGroup]="sociosGroup">
 				<div class="row">
 					<div class="col">
@@ -162,12 +178,14 @@
 							</mat-form-field>
 						</p>
 					</div>
-					<div class="col">
+					<div class="button-container">
 						<button [disabled]="!sociosGroup.valid"
 							(click)="addSocio()"
-							mat-raised-button
-							color="primary">
-							Registrar
+							mat-mini-fab
+							color="accent"
+							aria-label="Agregar socio"
+							title="Agregar socio">
+							<mat-icon>plus_one</mat-icon>
 						</button>
 					</div>
 				</div>
@@ -176,12 +194,20 @@
 		</div>
 
 		<h2>Socios agregados</h2>
-		<div class="row">
-			<div *ngFor="let socio of socios"
-				class="col">
-				Socio
-			</div>
+		<div class="row ml-2">
+			<mat-chip-list #chipList>
+				<mat-chip *ngFor="let socio of socios"
+					[selectable]="true"
+					[removable]="true"
+					(removed)="removeSocio(socio)">
+					{{socio.apellido}} {{socio.nombre}} %{{socio.aportes}}
+					<mat-icon matChipRemove>cancel</mat-icon>
+				</mat-chip>
+			</mat-chip-list>
+
 		</div>
+
+		<br>
 
 		<button [disabled]="!(formGroup.valid && sociosValidos)"
 			mat-raised-button
