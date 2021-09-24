@@ -25,7 +25,7 @@ export class CreateFormComponent {
     domicilioReal: new FormControl('', [Validators.required]),
     domicilioLegal: new FormControl('', [Validators.required]),
     fecha: new FormControl('', [Validators.required]),
-    estatuto: new FormControl('', [Validators.required]),
+    estatuto: new FormControl(null, [Validators.required]),
     socios: this.sociosGroup
   })
 
@@ -64,6 +64,19 @@ export class CreateFormComponent {
     return (this.accumPercentage() == 100);
   }
 
+  onFileChange(event: any) {
+    console.log(event);
+
+    if (event.target.files.length > 0) {
+      const file = event.target.files[0];
+      this.formGroup.patchValue({
+        estatuto: file
+      });
+    }
+    console.log(this.formGroup);
+
+  }
+
   onSubmit() {
     if ((this.formGroup.invalid) || (!this.validPercentage())) {
       return
@@ -73,15 +86,24 @@ export class CreateFormComponent {
     this.sociedadAnonima = new SociedadAnonima(
       this.formGroup.value.nombre,
       this.formGroup.value.fecha,
-      this.formGroup.value.estatuto,
       this.formGroup.value.domicilioLegal,
       this.formGroup.value.domicilioReal,
       this.formGroup.value.email,
       this.socios
     );
 
-    console.log(this.sociedadAnonima);
+    const formData = new FormData();
+    formData.append('file', this.formGroup.get('estatuto')?.value);
 
+    console.log(formData);
+
+    /*this.http.post('http://localhost:8001/upload.php', formData)
+      .subscribe(res => {
+        console.log(res);
+        alert('Uploaded Successfully.');
+      })*/
+
+    this.formGroup.reset();
   }
 
   removeSocio(socio: Socio) {

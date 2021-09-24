@@ -108,17 +108,12 @@
 			</div>
 			<div class="col">
 				<p>
-					<mat-form-field appearance="outline">
-						<mat-label>Estatuto</mat-label>
-						<input formControlName="estatuto"
-							matInput
-							placeholder="Estatuto"
-							required>
-						<mat-error *ngIf="formGroup.controls.fecha.invalid">
-							{{getRequiredErrorMessage(formGroup.controls.estatuto)}}
-						</mat-error>
-						<mat-icon matSuffix>info</mat-icon>
-					</mat-form-field>
+					<mat-label>Estatuto</mat-label>
+					<input (change)="onFileChange($event)"
+						formControlName="estatuto"
+						placeholder="Estatuto"
+						type="file"
+						required>
 				</p>
 			</div>
 		</div>
