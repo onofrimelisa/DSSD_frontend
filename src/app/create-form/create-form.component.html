@@ -109,8 +109,7 @@
 			<div class="col">
 				<p>
 					<mat-label>Estatuto</mat-label>
-					<input (change)="onFileChange($event)"
-						formControlName="estatuto"
+					<input formControlName="estatuto"
 						placeholder="Estatuto"
 						type="file"
 						required>
@@ -169,7 +168,7 @@
 								<mat-error *ngIf="sociosGroup.controls.porcentaje.invalid">
 									{{getRequiredErrorMessage(sociosGroup.controls.porcentaje)}}
 								</mat-error>
-								<mat-hint>Porcentaje</mat-hint>
+								<mat-hint>Numérico</mat-hint>
 							</mat-form-field>
 						</p>
 					</div>

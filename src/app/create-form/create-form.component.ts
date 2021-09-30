@@ -64,23 +64,15 @@ export class CreateFormComponent {
     return (this.accumPercentage() == 100);
   }
 
-  onFileChange(event: any) {
-    console.log(event);
-
-    if (event.target.files.length > 0) {
-      const file = event.target.files[0];
-      this.formGroup.patchValue({
-        estatuto: file
-      });
-    }
-    console.log(this.formGroup);
-
-  }
-
   onSubmit() {
     if ((this.formGroup.invalid) || (!this.validPercentage())) {
       return
     }
+
+    // obtengo apoderado
+    let apoderado = this.socios.reduce((a, b) => {
+      return (a.aportes > b.aportes ? a : b);
+    })
 
     // agregar sociedad anónima
     this.sociedadAnonima = new SociedadAnonima(
@@ -89,21 +81,23 @@ export class CreateFormComponent {
       this.formGroup.value.domicilioLegal,
       this.formGroup.value.domicilioReal,
       this.formGroup.value.email,
-      this.socios
+      this.socios,
+      apoderado
     );
+
+    console.log(this.sociedadAnonima);
+
 
     const formData = new FormData();
     formData.append('file', this.formGroup.get('estatuto')?.value);
-
     console.log(formData);
+    console.log(this.formGroup);
 
     /*this.http.post('http://localhost:8001/upload.php', formData)
       .subscribe(res => {
         console.log(res);
         alert('Uploaded Successfully.');
       })*/
-
-    this.formGroup.reset();
   }
 
   removeSocio(socio: Socio) {

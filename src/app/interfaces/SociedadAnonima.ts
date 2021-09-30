@@ -9,6 +9,7 @@ export class SociedadAnonima {
     public domicilioLegal: string,
     public domicilioReal: string,
     public correoElectronico: string,
-    public socios: Socio[]
+    public socios: Socio[],
+    public apoderado: Socio,
   ) { }
 }
