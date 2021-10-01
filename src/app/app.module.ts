@@ -16,6 +16,12 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatGridListModule } from '@angular/material/grid-list';
 
+// Apollo Client
+import { HttpClientModule } from '@angular/common/http';
+import { APOLLO_OPTIONS } from 'apollo-angular';
+import { HttpLink } from 'apollo-angular/http';
+import { InMemoryCache } from '@apollo/client/core';
+
 // Components
 import { AppComponent } from './app.component';
 import { CreateFormComponent } from './create-form/create-form.component';
@@ -23,14 +29,13 @@ import { ToolbarComponent } from './toolbar/toolbar.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 
-
 @NgModule({
   declarations: [
     AppComponent,
     CreateFormComponent,
     ToolbarComponent,
     HomeComponent,
-    LoginComponent
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
@@ -46,11 +51,25 @@ import { LoginComponent } from './login/login.component';
     MatChipsModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatGridListModule
+    MatGridListModule,
+    HttpClientModule
   ],
   exports: [
   ],
-  providers: [],
+  providers: [
+    {
+      provide: APOLLO_OPTIONS,
+      useFactory: (httpLink: HttpLink) => {
+        return {
+          cache: new InMemoryCache(),
+          link: httpLink.create({
+            uri: 'https://countries.trevorblades.com/',
+          }),
+        };
+      },
+      deps: [HttpLink],
+    },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

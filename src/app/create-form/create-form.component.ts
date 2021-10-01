@@ -1,13 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormControl, Validators, FormGroup, AbstractControl } from '@angular/forms';
-import { SociedadAnonima, Socio } from '../interfaces';
+import { Continent, SociedadAnonima, Socio } from '../interfaces';
+import { GraphqlService } from '../services/graphql.service';
 
 @Component({
   selector: 'app-create-form',
   templateUrl: './create-form.component.html',
 })
 export class CreateFormComponent {
-
   sociedadAnonima: SociedadAnonima | undefined;
   socios: Socio[] = [];
   sociosValidos: boolean = false;
@@ -28,6 +28,10 @@ export class CreateFormComponent {
     estatuto: new FormControl(null, [Validators.required]),
     socios: this.sociosGroup
   })
+
+  constructor(public graphqlService: GraphqlService) {
+
+  }
 
   getEmailErrorMessage(form: AbstractControl) {
     let requiredErrorMessage = this.getRequiredErrorMessage(form);

@@ -1,7 +1,15 @@
 import { SociedadAnonima } from "./SociedadAnonima";
 import { Socio } from "./Socio";
+import { Language } from "./Language";
+import { State } from "./State";
+import { Country } from "./Country";
+import { Continent } from "./Continent";
 
 export {
     SociedadAnonima,
-    Socio
+    Socio,
+    Language,
+    State,
+    Country,
+    Continent
 }
