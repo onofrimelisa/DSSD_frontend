@@ -176,6 +176,7 @@
 					<div class="button-container">
 						<button [disabled]="!sociosGroup.valid"
 							(click)="addSocio()"
+							type="button"
 							mat-mini-fab
 							color="accent"
 							aria-label="Agregar socio"
@@ -202,9 +203,98 @@
 
 		</div>
 
+		<h2>
+			Agregar paises a los que exporta
+		</h2>
+		<div class="row ml-1">
+			<div class="row">
+				<div class="col">
+					<p>
+						<mat-form-field appearance="outline">
+							<mat-label>Continente</mat-label>
+
+							<mat-select (selectionChange)="selectContinent($event.value)">
+								<mat-option *ngFor="let continente of graphqlService.continents"
+									[value]="continente">
+									{{continente.name}}
+								</mat-option>
+							</mat-select>
+						</mat-form-field>
+
+					</p>
+
+				</div>
+
+				<div class="col">
+					<p *ngIf="continente">
+						<mat-form-field appearance="outline">
+							<mat-label>Pais</mat-label>
+
+							<mat-select (selectionChange)="selectCountry($event.value)">
+								<mat-option *ngFor="let pais of continente.countries"
+									[value]="pais">
+									{{pais.name}}
+								</mat-option>
+							</mat-select>
+						</mat-form-field>
+					</p>
+				</div>
+
+				<div class="col">
+					<p *ngIf="pais && pais.states.length > 0">
+						<mat-form-field appearance="outline">
+							<mat-label>Estados</mat-label>
+
+							<mat-select formControlName="estados"
+								multiple>
+								<mat-select-trigger>
+									{{formGroup.controls.estados.value ? formGroup.controls.estados.value[0].name : ''}}
+									<span *ngIf="formGroup.controls.estados.value?.length > 1"
+										class="example-additional-selection">
+										(+{{formGroup.controls.estados.value.length - 1}} {{formGroup.controls.estados.value?.length === 2 ? 'other' : 'others'}})
+									</span>
+								</mat-select-trigger>
+								<mat-option *ngFor="let estado of pais.states"
+									[value]="estado">
+									{{estado.name}}
+								</mat-option>
+							</mat-select>
+						</mat-form-field>
+					</p>
+				</div>
+
+				<div class="button-container">
+					<button [disabled]="!pais"
+						(click)="addPaisForSociedad()"
+						type="button"
+						mat-mini-fab
+						color="accent"
+						aria-label="Agregar socio"
+						title="Agregar pais">
+						<mat-icon>plus_one</mat-icon>
+					</button>
+				</div>
+			</div>
+		</div>
+
+		<h2>Paises agregados</h2>
+		<div class="row ml-2">
+			<mat-chip-list #chipList>
+				<mat-chip *ngFor="let pais of paisesForSociedad"
+					[selectable]="true"
+					[removable]="true"
+					(removed)="removePais(pais)">
+					{{pais.name}}
+					<mat-icon matChipRemove>cancel</mat-icon>
+				</mat-chip>
+			</mat-chip-list>
+
+		</div>
+
 		<br>
 
 		<button [disabled]="!(formGroup.valid && sociosValidos)"
+			type="submit"
 			mat-raised-button
 			color="primary">
 			Registrar

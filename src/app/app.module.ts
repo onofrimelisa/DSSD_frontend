@@ -15,6 +15,7 @@ import { MatChipsModule } from '@angular/material/chips';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatGridListModule } from '@angular/material/grid-list';
+import { MatSelectModule } from '@angular/material/select';
 
 // Apollo Client
 import { HttpClientModule } from '@angular/common/http';
@@ -52,7 +53,8 @@ import { LoginComponent } from './login/login.component';
     MatDatepickerModule,
     MatNativeDateModule,
     MatGridListModule,
-    HttpClientModule
+    HttpClientModule,
+    MatSelectModule
   ],
   exports: [
   ],

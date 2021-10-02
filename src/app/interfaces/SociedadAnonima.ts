@@ -1,3 +1,4 @@
+import { Country, State } from ".";
 import { Socio } from "./Socio";
 
 export class SociedadAnonima {
@@ -11,5 +12,6 @@ export class SociedadAnonima {
     public correoElectronico: string,
     public socios: Socio[],
     public apoderado: Socio,
+    public paises: Country[],
   ) { }
 }
