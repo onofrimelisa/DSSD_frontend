@@ -29,6 +29,7 @@ import { CreateFormComponent } from './create-form/create-form.component';
 import { ToolbarComponent } from './toolbar/toolbar.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
+import { GRAPHQL_API_URL } from './app-constants';
 
 @NgModule({
   declarations: [
@@ -65,7 +66,7 @@ import { LoginComponent } from './login/login.component';
         return {
           cache: new InMemoryCache(),
           link: httpLink.create({
-            uri: 'https://countries.trevorblades.com/',
+            uri: GRAPHQL_API_URL,
           }),
         };
       },

@@ -1,6 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators, AbstractControl } from '@angular/forms';
-import { Socio, SociedadAnonima } from '../interfaces';
+import { AuthService } from '../services/auth.service';
+import swal from 'sweetalert';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-login',
@@ -8,6 +11,8 @@ import { Socio, SociedadAnonima } from '../interfaces';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
+
+  constructor(private auth: AuthService, private router: Router) { }
 
   // Form
   login = new FormGroup({
@@ -28,9 +33,19 @@ export class LoginComponent {
       return
     }
 
+    let usuario = this.login.controls.usuario.value
+    let contrasenia = this.login.controls.contrasenia.value
+
+    this.auth.login(usuario, contrasenia)
+      .subscribe((data: any) => {
+        this.auth.token = data.token
+        swal("Inicio de sesión", "La operación se realizó correctamente", "success");
+        this.router.navigate(["/registro"])
+      }, (error) => {
+        swal("Inicio de sesión", "Ocurrió un problema", "error");
+      })
 
 
-    this.login.reset();
   }
 
 }
