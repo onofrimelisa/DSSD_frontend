@@ -189,7 +189,7 @@
 			</form>
 		</div>
 
-		<h2>Socios agregados</h2>
+		<h2 *ngIf="socios.length > 0">Socios agregados</h2>
 		<div class="row ml-2">
 			<mat-chip-list #chipList>
 				<mat-chip *ngFor="let socio of socios"
@@ -202,6 +202,8 @@
 			</mat-chip-list>
 
 		</div>
+
+		<br>
 
 		<h2>
 			Agregar paises a los que exporta
@@ -277,7 +279,7 @@
 			</div>
 		</div>
 
-		<h2>Paises agregados</h2>
+		<h2 *ngIf="paisesForSociedad.length > 0">Paises agregados</h2>
 		<div class="row ml-2">
 			<mat-chip-list #chipList>
 				<mat-chip *ngFor="let pais of paisesForSociedad"
