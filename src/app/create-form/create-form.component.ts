@@ -2,6 +2,9 @@ import { Component } from '@angular/core';
 import { FormControl, Validators, FormGroup, AbstractControl } from '@angular/forms';
 import { Continent, Country, SociedadAnonima, Socio, State } from '../interfaces';
 import { GraphqlService } from '../services/graphql.service';
+import swal from 'sweetalert';
+import { HttpClient } from '@angular/common/http';
+import { PRIVATE_BACKEND_URL } from '../app-constants';
 
 @Component({
   selector: 'app-create-form',
@@ -33,7 +36,7 @@ export class CreateFormComponent {
     socios: this.sociosGroup
   })
 
-  constructor(public graphqlService: GraphqlService) {
+  constructor(public graphqlService: GraphqlService, private http: HttpClient) {
 
   }
 
@@ -94,6 +97,8 @@ export class CreateFormComponent {
       this.paisesForSociedad
     );
 
+
+
     console.log(this.sociedadAnonima);
 
 
@@ -101,13 +106,13 @@ export class CreateFormComponent {
     formData.append('file', this.formGroup.get('estatuto')?.value);
     formData.append('sociedad_anonima', JSON.stringify(this.sociedadAnonima));
 
-    console.log(JSON.stringify(this.sociedadAnonima));
-
-    /*this.http.post('http://localhost:8001/upload.php', formData)
-      .subscribe(res => {
+    this.http.post(PRIVATE_BACKEND_URL, formData)
+      .subscribe((res) => {
         console.log(res);
-        alert('Uploaded Successfully.');
-      })*/
+        swal("Registro de sociedad anónima", "La operación se realizó correctamente", "success");
+      }, (error) => {
+        swal("Inicio de sesión", "Ocurrió un problema", "error");
+      })
 
     this.formGroup.reset()
   }
