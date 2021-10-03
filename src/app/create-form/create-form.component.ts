@@ -111,7 +111,7 @@ export class CreateFormComponent {
         console.log(res);
         swal("Registro de sociedad anónima", "La operación se realizó correctamente", "success");
       }, (error) => {
-        swal("Inicio de sesión", "Ocurrió un problema", "error");
+        swal("Registro de sociedad anónima", "Ocurrió un problema", "error");
       })
 
     this.formGroup.reset()
