@@ -17,11 +17,15 @@ export class TokenInterceptor implements HttpInterceptor {
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     if (request.url.startsWith(PRIVATE_BACKEND_URL)) {
-      const token = this.auth.getLocalStorage()
+      const token = this.auth.getLocalStorage("token")
+      const sessionId = this.auth.getLocalStorage("sessionId")
 
       if (token) {
         request = request.clone({
-          setHeaders: { "X-Bonita-API-Token": token }
+          setHeaders: {
+            'X-Bonita-API-Token': token,
+            'JSESSIONID': sessionId,
+          }
         })
       } else {
         this.router.navigate(["/login"])

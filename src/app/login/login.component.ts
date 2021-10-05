@@ -38,7 +38,8 @@ export class LoginComponent {
 
     this.auth.login(usuario, contrasenia)
       .subscribe((data: any) => {
-        this.auth.setLocalStorage(data.token)
+        this.auth.setLocalStorage("token", data.token)
+        this.auth.setLocalStorage("sessionId", data.sessionId)
         swal("Inicio de sesión", "La operación se realizó correctamente", "success");
         this.router.navigate(["/registro"])
       }, (error) => {

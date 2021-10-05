@@ -17,6 +17,7 @@ export class CreateFormComponent {
   continente: Continent | undefined;
   pais: Country | undefined;
   paisesForSociedad: Country[] = []
+  file: File | undefined
 
   // Form
   sociosGroup = new FormGroup({
@@ -97,24 +98,18 @@ export class CreateFormComponent {
       this.paisesForSociedad
     );
 
-
-
-    console.log(this.sociedadAnonima);
-
-
     const formData = new FormData();
-    formData.append('file', this.formGroup.get('estatuto')?.value);
+    if (this.file) {
+      formData.append('estatuto', this.file);
+    }
     formData.append('sociedad_anonima', JSON.stringify(this.sociedadAnonima));
 
-    this.http.post(PRIVATE_BACKEND_URL, formData)
+    this.http.post(PRIVATE_BACKEND_URL + "/sociedad", formData)
       .subscribe((res) => {
-        console.log(res);
         swal("Registro de sociedad anónima", "La operación se realizó correctamente", "success");
       }, (error) => {
         swal("Registro de sociedad anónima", "Ocurrió un problema", "error");
       })
-
-    this.formGroup.reset()
   }
 
   removeSocio(socio: Socio) {
@@ -144,6 +139,13 @@ export class CreateFormComponent {
         return
       }
       this.paisesForSociedad.push(this.pais)
+    }
+  }
+
+  onFileSelect(input: any) {
+    console.log(input.files);
+    if (input.files && input.files[0]) {
+      this.file = input.files[0]
     }
   }
 

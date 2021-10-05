@@ -13,11 +13,11 @@ export class AuthService {
     return this.http.post(BACKEND_URL + "/login", { username: usuario, password: contrasenia })
   }
 
-  setLocalStorage(token: string) {
-    localStorage.setItem("token", token)
+  setLocalStorage(key: string, value: string) {
+    localStorage.setItem(key, value)
   }
 
-  getLocalStorage() {
-    return localStorage.getItem("token")
+  getLocalStorage(key: string): string {
+    return localStorage.getItem(key) || ""
   }
 }

@@ -110,7 +110,8 @@
 			<div class="col">
 				<p>
 					<mat-label>Estatuto</mat-label>
-					<input formControlName="estatuto"
+					<input (change)="onFileSelect($event.target)"
+						formControlName="estatuto"
 						placeholder="Estatuto"
 						type="file"
 						required>
