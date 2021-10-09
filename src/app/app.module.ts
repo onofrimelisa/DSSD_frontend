@@ -33,6 +33,8 @@ import { LoginComponent } from './login/login.component';
 import { GRAPHQL_API_URL, PRIVATE_BACKEND_URL } from './app-constants';
 import { TokenInterceptor } from './interceptors/token.interceptor';
 import { MisRegistrosComponent } from './apoderado/mis-registros/mis-registros.component';
+import { SociedadesComponent } from './mesa-entradas/sociedades/sociedades.component';
+import { EstatutoSociedadesComponent } from './legales/estatuto-sociedades/estatuto-sociedades.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +44,8 @@ import { MisRegistrosComponent } from './apoderado/mis-registros/mis-registros.c
     HomeComponent,
     LoginComponent,
     MisRegistrosComponent,
+    SociedadesComponent,
+    EstatutoSociedadesComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,83 @@
+<h1>
+	Sociedades anónimas regsitradas
+</h1>
+
+<table [dataSource]="dataSource"
+	mat-table
+	class="mat-elevation-z8">
+
+	<!-- Position Column -->
+	<ng-container matColumnDef="position">
+		<th *matHeaderCellDef
+			mat-header-cell>
+			No.
+		</th>
+		<td *matCellDef="let element"
+			mat-cell>
+			{{element.position}}
+		</td>
+	</ng-container>
+
+	<ng-container matColumnDef="name">
+		<th *matHeaderCellDef
+			mat-header-cell>
+			Nombre
+		</th>
+		<td *matCellDef="let element"
+			mat-cell>
+			{{element.name}}
+		</td>
+	</ng-container>
+
+	<ng-container matColumnDef="apoderado">
+		<th *matHeaderCellDef
+			mat-header-cell>
+			Apoderado
+		</th>
+		<td *matCellDef="let element"
+			mat-cell>
+			{{element.name}}
+		</td>
+	</ng-container>
+
+	<ng-container matColumnDef="weight">
+		<th *matHeaderCellDef
+			mat-header-cell>
+			Fecha de creación
+		</th>
+		<td *matCellDef="let element"
+			mat-cell>
+			{{element.weight}}
+		</td>
+	</ng-container>
+
+	<ng-container matColumnDef="symbol">
+		<th *matHeaderCellDef
+			mat-header-cell>
+			Operaciones
+		</th>
+		<td *matCellDef="let element"
+			mat-cell>
+			<div class="row">
+				<button mat-mini-fab
+					color="accent"
+					title="Aprobar">
+					<mat-icon>thumb_up</mat-icon>
+				</button>
+				<button class="ml-2"
+					mat-mini-fab
+					color="warn"
+					title="Desaprobar">
+					<mat-icon>thumb_down</mat-icon>
+				</button>
+			</div>
+		</td>
+	</ng-container>
+
+	<tbody>
+		<tr *matHeaderRowDef="displayedColumns"
+			mat-header-row></tr>
+		<tr *matRowDef="let row; columns: displayedColumns;"
+			mat-row></tr>
+	</tbody>
+</table>
