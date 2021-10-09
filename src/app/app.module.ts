@@ -16,6 +16,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatSelectModule } from '@angular/material/select';
+import { MatTableModule } from '@angular/material/table';
 
 // Apollo Client
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -31,6 +32,7 @@ import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { GRAPHQL_API_URL, PRIVATE_BACKEND_URL } from './app-constants';
 import { TokenInterceptor } from './interceptors/token.interceptor';
+import { MisRegistrosComponent } from './apoderado/mis-registros/mis-registros.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +41,7 @@ import { TokenInterceptor } from './interceptors/token.interceptor';
     ToolbarComponent,
     HomeComponent,
     LoginComponent,
+    MisRegistrosComponent,
   ],
   imports: [
     BrowserModule,
@@ -56,7 +59,8 @@ import { TokenInterceptor } from './interceptors/token.interceptor';
     MatNativeDateModule,
     MatGridListModule,
     HttpClientModule,
-    MatSelectModule
+    MatSelectModule,
+    MatTableModule
   ],
   exports: [
   ],
