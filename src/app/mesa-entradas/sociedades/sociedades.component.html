@@ -59,12 +59,14 @@
 		<td *matCellDef="let element"
 			mat-cell>
 			<div class="row">
-				<button mat-mini-fab
+				<button (click)="aprobarSociedad()"
+					mat-mini-fab
 					color="accent"
 					title="Aprobar">
 					<mat-icon>thumb_up</mat-icon>
 				</button>
-				<button class="ml-2"
+				<button (click)="desaprobarSociedad()"
+					class="ml-2"
 					mat-mini-fab
 					color="warn"
 					title="Desaprobar">
