@@ -17,6 +17,8 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatSelectModule } from '@angular/material/select';
 import { MatTableModule } from '@angular/material/table';
+import { MatCardModule } from '@angular/material/card';
+import { MatListModule } from '@angular/material/list';
 
 // Apollo Client
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -35,6 +37,7 @@ import { TokenInterceptor } from './interceptors/token.interceptor';
 import { MisRegistrosComponent } from './apoderado/mis-registros/mis-registros.component';
 import { SociedadesComponent } from './mesa-entradas/sociedades/sociedades.component';
 import { EstatutoSociedadesComponent } from './legales/estatuto-sociedades/estatuto-sociedades.component';
+import { PublicSociedadComponent } from './public-sociedad/public-sociedad.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +49,7 @@ import { EstatutoSociedadesComponent } from './legales/estatuto-sociedades/estat
     MisRegistrosComponent,
     SociedadesComponent,
     EstatutoSociedadesComponent,
+    PublicSociedadComponent,
   ],
   imports: [
     BrowserModule,
@@ -64,7 +68,9 @@ import { EstatutoSociedadesComponent } from './legales/estatuto-sociedades/estat
     MatGridListModule,
     HttpClientModule,
     MatSelectModule,
-    MatTableModule
+    MatTableModule,
+    MatCardModule,
+    MatListModule
   ],
   exports: [
   ],

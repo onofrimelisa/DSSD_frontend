@@ -1,0 +1,53 @@
+<h1>
+	Información pública de Sociedad Anónima
+</h1>
+
+<br>
+<br>
+
+<div class="d-flex justify-content-center">
+
+	<mat-card *ngIf="sociedadAnonima"
+		class="example-card">
+		<mat-card-header>
+			<div mat-card-avatar
+				class="example-header-image"></div>
+			<mat-card-title>
+				{{sociedadAnonima.nombre}}
+			</mat-card-title>
+			<mat-card-subtitle>
+				{{sociedadAnonima.correoElectronico}}
+			</mat-card-subtitle>
+		</mat-card-header>
+		<img mat-card-image
+			src="https://material.angular.io/assets/img/examples/shiba2.jpg"
+			alt="Photo of a Shiba Inu">
+		<mat-card-content>
+			<p>
+				<b>Domicilio Real:</b>
+				{{sociedadAnonima.domicilioReal}}
+			</p>
+			<p>
+				<b>Domicilio Real:</b>
+				{{sociedadAnonima.domicilioLegal}}
+			</p>
+			<p>
+				<b>Fecha de creación:</b>
+				{{sociedadAnonima.fechaCreacion}}
+			</p>
+			<p>
+				<b>Apoderado:</b>
+				{{sociedadAnonima.apoderado.nombre}} {{sociedadAnonima.apoderado.apellido}}
+			</p>
+		</mat-card-content>
+		<br>
+		<h2>Socios:</h2>
+		<mat-list role="list">
+			<mat-list-item *ngFor="let socio of sociedadAnonima.socios"
+				role="listitem">
+				{{socio.nombre}} {{socio.apellido}}
+			</mat-list-item>
+		</mat-list>
+	</mat-card>
+
+</div>

@@ -6,6 +6,7 @@ import { HomeComponent } from './home/home.component';
 import { EstatutoSociedadesComponent } from './legales/estatuto-sociedades/estatuto-sociedades.component';
 import { LoginComponent } from './login/login.component';
 import { SociedadesComponent } from './mesa-entradas/sociedades/sociedades.component';
+import { PublicSociedadComponent } from './public-sociedad/public-sociedad.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -14,6 +15,7 @@ const routes: Routes = [
   { path: 'apoderado/sociedades', component: MisRegistrosComponent },
   { path: 'mesa_entradas/sociedades', component: SociedadesComponent },
   { path: 'legales/sociedades', component: EstatutoSociedadesComponent },
+  { path: 'public/sociedad', component: PublicSociedadComponent },
   { path: '', pathMatch: 'full', redirectTo: 'login' },
   { path: '**', pathMatch: 'full', redirectTo: 'login' },
 ];
