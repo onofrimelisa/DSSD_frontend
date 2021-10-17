@@ -14,30 +14,41 @@
 	</div>
 </div>
 
-<table [dataSource]="dataSource"
+<table *ngIf="!apoderado.loading && apoderado.sociedades.length > 0"
+	[dataSource]="apoderado.sociedades"
 	mat-table
 	class="mat-elevation-z8">
 
-	<!-- Position Column -->
-	<ng-container matColumnDef="position">
-		<th *matHeaderCellDef
-			mat-header-cell>
-			No.
-		</th>
-		<td *matCellDef="let element"
-			mat-cell>
-			{{element.position}}
-		</td>
-	</ng-container>
-
-	<ng-container matColumnDef="name">
+	<ng-container matColumnDef="nombre">
 		<th *matHeaderCellDef
 			mat-header-cell>
 			Nombre
 		</th>
 		<td *matCellDef="let element"
 			mat-cell>
-			{{element.name}}
+			{{element.nombre}}
+		</td>
+	</ng-container>
+
+	<ng-container matColumnDef="apoderado">
+		<th *matHeaderCellDef
+			mat-header-cell>
+			Apoderado
+		</th>
+		<td *matCellDef="let element"
+			mat-cell>
+			{{element.apoderado.nombre}} {{element.apoderado.apellido}}
+		</td>
+	</ng-container>
+
+	<ng-container matColumnDef="fechaCreacion">
+		<th *matHeaderCellDef
+			mat-header-cell>
+			Creacion
+		</th>
+		<td *matCellDef="let element"
+			mat-cell>
+			{{element.fechaCreacion}}
 		</td>
 	</ng-container>
 
@@ -52,7 +63,7 @@
 				<mat-chip-list class="mat-chip-list-stacked">
 					<mat-chip color="accent"
 						selected>
-						Estado
+						{{element.status[0].status}}
 					</mat-chip>
 				</mat-chip-list>
 			</div>
@@ -60,18 +71,7 @@
 		</td>
 	</ng-container>
 
-	<ng-container matColumnDef="weight">
-		<th *matHeaderCellDef
-			mat-header-cell>
-			Fecha de creación
-		</th>
-		<td *matCellDef="let element"
-			mat-cell>
-			{{element.weight}}
-		</td>
-	</ng-container>
-
-	<ng-container matColumnDef="symbol">
+	<ng-container matColumnDef="opciones">
 		<th *matHeaderCellDef
 			mat-header-cell>
 			Opciones

@@ -19,12 +19,14 @@ export class TokenInterceptor implements HttpInterceptor {
     if (request.url.startsWith(PRIVATE_BACKEND_URL)) {
       const token = this.auth.getLocalStorage("token")
       const sessionId = this.auth.getLocalStorage("sessionId")
+      const role = this.auth.getLocalStorage("role")
 
       if (token) {
         request = request.clone({
           setHeaders: {
             'X-Bonita-API-Token': token,
             'JSESSIONID': sessionId,
+            'ROLE': role,
           }
         })
       } else {
