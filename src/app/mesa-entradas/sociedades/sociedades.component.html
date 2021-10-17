@@ -2,30 +2,19 @@
 	Sociedades anónimas regsitradas
 </h1>
 
-<table [dataSource]="dataSource"
+<table *ngIf="!mesaEntradas.loading && mesaEntradas.sociedades.length > 0"
+	[dataSource]="mesaEntradas.sociedades"
 	mat-table
 	class="mat-elevation-z8">
 
-	<!-- Position Column -->
-	<ng-container matColumnDef="position">
-		<th *matHeaderCellDef
-			mat-header-cell>
-			No.
-		</th>
-		<td *matCellDef="let element"
-			mat-cell>
-			{{element.position}}
-		</td>
-	</ng-container>
-
-	<ng-container matColumnDef="name">
+	<ng-container matColumnDef="nombre">
 		<th *matHeaderCellDef
 			mat-header-cell>
 			Nombre
 		</th>
 		<td *matCellDef="let element"
 			mat-cell>
-			{{element.name}}
+			{{element.nombre}}
 		</td>
 	</ng-container>
 
@@ -36,22 +25,41 @@
 		</th>
 		<td *matCellDef="let element"
 			mat-cell>
-			{{element.name}}
+			{{element.apoderado.nombre}} {{element.apoderado.apellido}}
 		</td>
 	</ng-container>
 
-	<ng-container matColumnDef="weight">
+	<ng-container matColumnDef="fechaCreacion">
 		<th *matHeaderCellDef
 			mat-header-cell>
 			Fecha de creación
 		</th>
 		<td *matCellDef="let element"
 			mat-cell>
-			{{element.weight}}
+			{{element.fechaCreacion}}
 		</td>
 	</ng-container>
 
-	<ng-container matColumnDef="symbol">
+	<ng-container matColumnDef="estado">
+		<th *matHeaderCellDef
+			mat-header-cell>
+			Estado
+		</th>
+		<td *matCellDef="let element"
+			mat-cell>
+			<div class="chip">
+				<mat-chip-list class="mat-chip-list-stacked">
+					<mat-chip color="accent"
+						selected>
+						{{element.status[0].status}}
+					</mat-chip>
+				</mat-chip-list>
+			</div>
+
+		</td>
+	</ng-container>
+
+	<ng-container matColumnDef="operaciones">
 		<th *matHeaderCellDef
 			mat-header-cell>
 			Operaciones
