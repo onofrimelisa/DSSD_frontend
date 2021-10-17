@@ -2,30 +2,19 @@
 	Estatuto de Sociedades anónimas
 </h1>
 
-<table [dataSource]="dataSource"
+<table *ngIf="!legales.loading && legales.sociedades.length > 0; else elseBlock"
+	[dataSource]="legales.sociedades"
 	mat-table
 	class="mat-elevation-z8">
 
-	<!-- Position Column -->
-	<ng-container matColumnDef="position">
-		<th *matHeaderCellDef
-			mat-header-cell>
-			No.
-		</th>
-		<td *matCellDef="let element"
-			mat-cell>
-			{{element.position}}
-		</td>
-	</ng-container>
-
-	<ng-container matColumnDef="name">
+	<ng-container matColumnDef="nombre">
 		<th *matHeaderCellDef
 			mat-header-cell>
 			Nombre
 		</th>
 		<td *matCellDef="let element"
 			mat-cell>
-			{{element.name}}
+			{{element.nombre}}
 		</td>
 	</ng-container>
 
@@ -36,25 +25,44 @@
 		</th>
 		<td *matCellDef="let element"
 			mat-cell>
-			{{element.name}}
+			{{element.apoderado.nombre}} {{element.apoderado.apellido}}
 		</td>
 	</ng-container>
 
-	<ng-container matColumnDef="weight">
+	<ng-container matColumnDef="fechaCreacion">
 		<th *matHeaderCellDef
 			mat-header-cell>
 			Fecha de creación
 		</th>
 		<td *matCellDef="let element"
 			mat-cell>
-			{{element.weight}}
+			{{element.fechaCreacion}}
 		</td>
 	</ng-container>
 
-	<ng-container matColumnDef="symbol">
+	<ng-container matColumnDef="estado">
 		<th *matHeaderCellDef
 			mat-header-cell>
-			Estatuto
+			Estado
+		</th>
+		<td *matCellDef="let element"
+			mat-cell>
+			<div class="chip">
+				<mat-chip-list class="mat-chip-list-stacked">
+					<mat-chip color="accent"
+						selected>
+						{{element.status[0].status}}
+					</mat-chip>
+				</mat-chip-list>
+			</div>
+
+		</td>
+	</ng-container>
+
+	<ng-container matColumnDef="operaciones">
+		<th *matHeaderCellDef
+			mat-header-cell>
+			Operaciones
 		</th>
 		<td *matCellDef="let element"
 			mat-cell>
@@ -83,3 +91,10 @@
 			mat-row></tr>
 	</tbody>
 </table>
+
+<ng-template #elseBlock>
+	<div class="alert alert-primary"
+		role="alert">
+		No hay ninguna sociedad anónima para evaluar estatuto
+	</div>
+</ng-template>

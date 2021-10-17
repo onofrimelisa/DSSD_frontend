@@ -2,7 +2,7 @@
 	Sociedades anónimas regsitradas
 </h1>
 
-<table *ngIf="!mesaEntradas.loading && mesaEntradas.sociedades.length > 0"
+<table *ngIf="!mesaEntradas.loading && mesaEntradas.sociedades.length > 0; else elseBlock"
 	[dataSource]="mesaEntradas.sociedades"
 	mat-table
 	class="mat-elevation-z8">
@@ -91,3 +91,10 @@
 			mat-row></tr>
 	</tbody>
 </table>
+
+<ng-template #elseBlock>
+	<div class="alert alert-primary"
+		role="alert">
+		No hay ninguna sociedad anónima para revisar
+	</div>
+</ng-template>
