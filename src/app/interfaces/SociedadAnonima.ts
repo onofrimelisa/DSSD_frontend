@@ -13,5 +13,7 @@ export class SociedadAnonima {
     public socios: Socio[],
     public apoderado: Socio,
     public paises: Country[],
+    public role: string,
+    public username: string
   ) { }
 }

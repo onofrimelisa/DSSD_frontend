@@ -1,3 +1,6 @@
 export const BACKEND_URL = "http://localhost:8081"
 export const PRIVATE_BACKEND_URL: string = BACKEND_URL + "/api"
 export const GRAPHQL_API_URL = "https://countries.trevorblades.com/"
+export const APODERADO_ROLE = "APODERADO"
+export const MESA_ENTRADAS_ROLE = "MESA_ENTRADAS"
+export const LEGALES_ROLE = "LEGALES"

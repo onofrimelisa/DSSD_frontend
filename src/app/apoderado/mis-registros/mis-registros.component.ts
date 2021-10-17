@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 export interface PeriodicElement {
   name: string;
@@ -29,9 +30,13 @@ export class MisRegistrosComponent implements OnInit {
   displayedColumns: string[] = ['position', 'name', 'weight', 'estado', 'symbol'];
   dataSource = ELEMENT_DATA;
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
+  }
+
+  agregarSociedad() {
+    this.router.navigate(["/registro"])
   }
 
 }

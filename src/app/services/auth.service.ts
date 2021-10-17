@@ -6,7 +6,6 @@ import { BACKEND_URL } from '../app-constants';
   providedIn: 'root'
 })
 export class AuthService {
-
   constructor(private http: HttpClient) { }
 
   login(usuario: string, contrasenia: string) {
@@ -19,5 +18,13 @@ export class AuthService {
 
   getLocalStorage(key: string): string {
     return localStorage.getItem(key) || ""
+  }
+
+  isUserLogged() {
+    return this.getLocalStorage("username") != ""
+  }
+
+  logout() {
+    localStorage.clear()
   }
 }

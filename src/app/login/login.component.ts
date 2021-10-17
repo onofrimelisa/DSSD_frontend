@@ -3,6 +3,7 @@ import { FormGroup, FormControl, Validators, AbstractControl } from '@angular/fo
 import { AuthService } from '../services/auth.service';
 import swal from 'sweetalert';
 import { Router } from '@angular/router';
+import { APODERADO_ROLE, LEGALES_ROLE, MESA_ENTRADAS_ROLE } from '../app-constants';
 
 
 @Component({
@@ -40,8 +41,26 @@ export class LoginComponent {
       .subscribe((data: any) => {
         this.auth.setLocalStorage("token", data.token)
         this.auth.setLocalStorage("sessionId", data.sessionId)
+        this.auth.setLocalStorage("role", data.role)
+        this.auth.setLocalStorage("username", usuario)
+
         swal("Inicio de sesión", "La operación se realizó correctamente", "success");
-        this.router.navigate(["/registro"])
+
+        // navigate to different routes deppending on the role
+
+        switch (data.role) {
+          case MESA_ENTRADAS_ROLE:
+            this.router.navigate(["/mesa_entradas/sociedades"])
+            break;
+
+          case LEGALES_ROLE:
+            this.router.navigate(["/legales/sociedades"])
+            break;
+
+          default:
+            this.router.navigate(["/apoderado/sociedades"])
+            break;
+        }
       }, (error) => {
         swal("Inicio de sesión", "Ocurrió un problema", "error");
       })

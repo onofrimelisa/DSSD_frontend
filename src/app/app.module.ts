@@ -28,9 +28,8 @@ import { InMemoryCache } from '@apollo/client/core';
 
 // Components
 import { AppComponent } from './app.component';
-import { CreateFormComponent } from './create-form/create-form.component';
+import { CreateFormComponent } from './apoderado/create-form/create-form.component';
 import { ToolbarComponent } from './toolbar/toolbar.component';
-import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { GRAPHQL_API_URL, PRIVATE_BACKEND_URL } from './app-constants';
 import { TokenInterceptor } from './interceptors/token.interceptor';
@@ -44,7 +43,6 @@ import { PublicSociedadComponent } from './public-sociedad/public-sociedad.compo
     AppComponent,
     CreateFormComponent,
     ToolbarComponent,
-    HomeComponent,
     LoginComponent,
     MisRegistrosComponent,
     SociedadesComponent,

@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { MESA_ENTRADAS_ROLE, LEGALES_ROLE } from '../app-constants';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-toolbar',
@@ -7,9 +10,33 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ToolbarComponent implements OnInit {
 
-  constructor() { }
+  constructor(public auth: AuthService, private router: Router) {
+    console.log(this.auth.isUserLogged());
+
+  }
 
   ngOnInit(): void {
+  }
+
+  logout() {
+    this.auth.logout()
+    this.router.navigate(["/login"])
+  }
+
+  goToHome() {
+    switch (this.auth.getLocalStorage("role")) {
+      case MESA_ENTRADAS_ROLE:
+        this.router.navigate(["/mesa_entradas/sociedades"])
+        break;
+
+      case LEGALES_ROLE:
+        this.router.navigate(["/legales/sociedades"])
+        break;
+
+      default:
+        this.router.navigate(["/apoderado/sociedades"])
+        break;
+    }
   }
 
 }

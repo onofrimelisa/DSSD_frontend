@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { APODERADO_ROLE } from '../app-constants';
 import { SociedadAnonima, Socio } from '../interfaces';
 
 @Component({
@@ -15,7 +16,7 @@ export class PublicSociedadComponent implements OnInit {
     let socios: Socio[] = []
     socios.push(socio1)
     socios.push(socio2)
-    this.sociedadAnonima = new SociedadAnonima("Sociedad Anonima", new Date(), "466", "466", "onofri@gmail.com", socios, new Socio("meli", "onofri", 60), [])
+    this.sociedadAnonima = new SociedadAnonima("Sociedad Anonima", new Date(), "466", "466", "onofri@gmail.com", socios, new Socio("meli", "onofri", 60), [], APODERADO_ROLE, "")
   }
 
   ngOnInit(): void {

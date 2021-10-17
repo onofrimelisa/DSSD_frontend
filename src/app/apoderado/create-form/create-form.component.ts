@@ -1,10 +1,12 @@
 import { Component } from '@angular/core';
 import { FormControl, Validators, FormGroup, AbstractControl } from '@angular/forms';
-import { Continent, Country, SociedadAnonima, Socio, State } from '../interfaces';
-import { GraphqlService } from '../services/graphql.service';
+import { Continent, Country, SociedadAnonima, Socio, State } from '../../interfaces';
+import { GraphqlService } from '../../services/graphql.service';
 import swal from 'sweetalert';
 import { HttpClient } from '@angular/common/http';
-import { PRIVATE_BACKEND_URL } from '../app-constants';
+import { PRIVATE_BACKEND_URL } from '../../app-constants';
+import { Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-create-form',
@@ -37,9 +39,12 @@ export class CreateFormComponent {
     socios: this.sociosGroup
   })
 
-  constructor(public graphqlService: GraphqlService, private http: HttpClient) {
-
-  }
+  constructor(
+    public graphqlService: GraphqlService,
+    private http: HttpClient,
+    private router: Router,
+    private auth: AuthService
+  ) { }
 
   getEmailErrorMessage(form: AbstractControl) {
     let requiredErrorMessage = this.getRequiredErrorMessage(form);
@@ -95,7 +100,9 @@ export class CreateFormComponent {
       this.formGroup.value.email,
       this.socios,
       apoderado,
-      this.paisesForSociedad
+      this.paisesForSociedad,
+      this.auth.getLocalStorage("role"),
+      this.auth.getLocalStorage("username")
     );
 
     const formData = new FormData();
@@ -107,6 +114,7 @@ export class CreateFormComponent {
     this.http.post(PRIVATE_BACKEND_URL + "/sociedad", formData)
       .subscribe((res) => {
         swal("Registro de sociedad anónima", "La operación se realizó correctamente", "success");
+        this.router.navigate(["/apoderado/sociedades"])
       }, (error) => {
         swal("Registro de sociedad anónima", "Ocurrió un problema", "error");
       })
