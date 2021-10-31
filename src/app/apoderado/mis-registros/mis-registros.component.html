@@ -14,7 +14,7 @@
 	</div>
 </div>
 
-<table *ngIf="!apoderado.loading && apoderado.sociedades.length > 0"
+<table *ngIf="!apoderado.loading && apoderado.sociedades.length > 0; else elseBlock"
 	[dataSource]="apoderado.sociedades"
 	mat-table
 	class="mat-elevation-z8">
@@ -95,3 +95,10 @@
 			mat-row></tr>
 	</tbody>
 </table>
+
+<ng-template #elseBlock>
+	<div class="alert alert-primary"
+		role="alert">
+		No hay ninguna sociedad anónima registrada
+	</div>
+</ng-template>

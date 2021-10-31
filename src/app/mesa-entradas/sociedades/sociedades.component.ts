@@ -37,4 +37,7 @@ export class SociedadesComponent implements OnInit {
 
   }
 
+  ngOnDestroy() {
+    this.mesaEntradas.reset()
+  }
 }

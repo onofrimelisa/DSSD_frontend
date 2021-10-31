@@ -25,4 +25,9 @@ export class MesaEntradasService {
         console.log(err);
       })
   }
+
+  reset() {
+    this.loading = true;
+    this.sociedades = []
+  }
 }

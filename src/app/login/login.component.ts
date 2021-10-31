@@ -61,8 +61,10 @@ export class LoginComponent {
             this.router.navigate(["/apoderado/sociedades"])
             break;
         }
-      }, (error) => {
-        swal("Inicio de sesión", "Ocurrió un problema", "error");
+      }, (error: any) => {
+        console.log(error);
+
+        swal("Inicio de sesión", "Ocurrió un problema: " + error.error.message, "error");
       })
 
 

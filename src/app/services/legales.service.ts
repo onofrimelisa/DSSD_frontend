@@ -25,4 +25,9 @@ export class LegalesService {
         console.log(err);
       })
   }
+
+  reset() {
+    this.loading = true;
+    this.sociedades = []
+  }
 }

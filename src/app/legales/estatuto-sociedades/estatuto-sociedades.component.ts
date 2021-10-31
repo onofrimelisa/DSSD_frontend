@@ -37,4 +37,8 @@ export class EstatutoSociedadesComponent implements OnInit {
 
   }
 
+  ngOnDestroy() {
+    this.legales.reset()
+  }
+
 }

@@ -7,6 +7,7 @@ import { HttpClient } from '@angular/common/http';
 import { PRIVATE_BACKEND_URL } from '../../app-constants';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
+import { ApoderadoService } from 'src/app/services/apoderado.service';
 
 @Component({
   selector: 'app-create-form',
@@ -43,7 +44,8 @@ export class CreateFormComponent {
     public graphqlService: GraphqlService,
     private http: HttpClient,
     private router: Router,
-    private auth: AuthService
+    private auth: AuthService,
+    private apoderado: ApoderadoService
   ) { }
 
   getEmailErrorMessage(form: AbstractControl) {
@@ -114,6 +116,7 @@ export class CreateFormComponent {
     this.http.post(PRIVATE_BACKEND_URL + "/sociedad", formData)
       .subscribe((res) => {
         swal("Registro de sociedad anónima", "La operación se realizó correctamente", "success");
+        this.apoderado.getSociedades()
         this.router.navigate(["/apoderado/sociedades"])
       }, (error) => {
         swal("Registro de sociedad anónima", "Ocurrió un problema", "error");

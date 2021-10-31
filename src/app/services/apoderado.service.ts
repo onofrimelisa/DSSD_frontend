@@ -25,4 +25,9 @@ export class ApoderadoService {
         console.log(err);
       })
   }
+
+  reset() {
+    this.loading = true;
+    this.sociedades = []
+  }
 }
