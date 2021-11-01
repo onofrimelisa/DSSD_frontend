@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { PRIVATE_BACKEND_URL } from 'src/app/app-constants';
+import { AuthService } from 'src/app/services/auth.service';
 import { MesaEntradasService } from 'src/app/services/mesa-entradas.service';
 import swal from 'sweetalert';
 
@@ -9,30 +10,35 @@ import swal from 'sweetalert';
   templateUrl: './sociedades.component.html',
   styleUrls: ['./sociedades.component.css']
 })
-export class SociedadesComponent implements OnInit {
+export class SociedadesComponent implements OnInit, OnDestroy {
   displayedColumns: string[] = ['nombre', 'fechaCreacion', 'apoderado', 'estado', 'operaciones'];
+  usuarioInfo: any;
 
-  constructor(private http: HttpClient, public mesaEntradas: MesaEntradasService) { }
+  constructor(private http: HttpClient, public mesaEntradas: MesaEntradasService, private auth: AuthService) {
+    this.usuarioInfo = this.auth.getLoginInformation()
+  }
 
   ngOnInit(): void {
   }
 
-  aprobarSociedad() {
-    this.http.post(PRIVATE_BACKEND_URL, "1")
+  aprobarSociedad(id: number) {
+    this.mesaEntradas.updateSociedad(true, this.usuarioInfo.username, this.usuarioInfo.password, id)
       .subscribe((data) => {
+        this.mesaEntradas.getSociedades()
         swal("Aprobar Sociedad", "La operación se realizó correctamente", "success");
       }, (error) => {
-        swal("Aprobar Sociedad", "Ocurrió un problema", "error");
+        swal("Aprobar Sociedad", "Ocurrió un problema: " + error.error.message, "error");
       })
 
   }
 
-  desaprobarSociedad() {
-    this.http.post(PRIVATE_BACKEND_URL, "1")
+  desaprobarSociedad(id: number) {
+    this.mesaEntradas.updateSociedad(false, this.usuarioInfo.username, this.usuarioInfo.password, id)
       .subscribe((data) => {
+        this.mesaEntradas.getSociedades()
         swal("Desaprobar Sociedad", "La operación se realizó correctamente", "success");
       }, (error) => {
-        swal("Desaprobar Sociedad", "Ocurrió un problema", "error");
+        swal("Desaprobar Sociedad", "Ocurrió un problema: " + error.error.message, "error");
       })
 
   }

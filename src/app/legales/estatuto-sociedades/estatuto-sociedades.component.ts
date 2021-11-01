@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
-import { PRIVATE_BACKEND_URL } from 'src/app/app-constants';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { AuthService } from 'src/app/services/auth.service';
 import { LegalesService } from 'src/app/services/legales.service';
 import swal from 'sweetalert';
 
@@ -9,30 +9,35 @@ import swal from 'sweetalert';
   templateUrl: './estatuto-sociedades.component.html',
   styleUrls: ['./estatuto-sociedades.component.css']
 })
-export class EstatutoSociedadesComponent implements OnInit {
+export class EstatutoSociedadesComponent implements OnInit, OnDestroy {
   displayedColumns: string[] = ['nombre', 'fechaCreacion', 'apoderado', 'estado', 'operaciones'];
+  usuarioInfo: any;
 
-  constructor(private http: HttpClient, public legales: LegalesService) { }
+  constructor(public legales: LegalesService, private auth: AuthService) {
+    this.usuarioInfo = this.auth.getLoginInformation()
+  }
 
   ngOnInit(): void {
   }
 
-  aprobarSociedad() {
-    this.http.post(PRIVATE_BACKEND_URL, "1")
+  aprobarSociedad(id: number) {
+    this.legales.updateSociedad(true, this.usuarioInfo.username, this.usuarioInfo.password, id)
       .subscribe((data) => {
-        swal("Aprobar Sociedad", "La operación se realizó correctamente", "success");
+        this.legales.getSociedades()
+        swal("Aprobar Estatuto", "La operación se realizó correctamente", "success");
       }, (error) => {
-        swal("Aprobar Sociedad", "Ocurrió un problema", "error");
+        swal("Aprobar Estatuto", "Ocurrió un problema: " + error.error.message, "error");
       })
 
   }
 
-  desaprobarSociedad() {
-    this.http.post(PRIVATE_BACKEND_URL, "1")
+  desaprobarSociedad(id: number) {
+    this.legales.updateSociedad(false, this.usuarioInfo.username, this.usuarioInfo.password, id)
       .subscribe((data) => {
-        swal("Desaprobar Sociedad", "La operación se realizó correctamente", "success");
+        this.legales.getSociedades()
+        swal("Desaprobar Estatuto", "La operación se realizó correctamente", "success");
       }, (error) => {
-        swal("Desaprobar Sociedad", "Ocurrió un problema", "error");
+        swal("Desaprobar Estatuto", "Ocurrió un problema: " + error.error.message, "error");
       })
 
   }

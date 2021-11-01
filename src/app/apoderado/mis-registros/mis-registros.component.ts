@@ -13,6 +13,7 @@ export class MisRegistrosComponent implements OnInit, OnDestroy {
   constructor(private router: Router, public apoderado: ApoderadoService) { }
 
   ngOnInit(): void {
+    this.apoderado.getSociedades()
   }
 
   ngOnDestroy() {

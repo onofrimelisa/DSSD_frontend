@@ -39,12 +39,10 @@ export class LoginComponent {
 
     this.auth.login(usuario, contrasenia)
       .subscribe((data: any) => {
-        this.auth.setLocalStorage("token", data.token)
-        this.auth.setLocalStorage("sessionId", data.sessionId)
-        this.auth.setLocalStorage("role", data.role)
-        this.auth.setLocalStorage("username", usuario)
-
+        this.auth.setAllLocalStorage(data, usuario, contrasenia)
         swal("Inicio de sesión", "La operación se realizó correctamente", "success");
+
+        this.auth.setRole(data.role)
 
         // navigate to different routes deppending on the role
 
@@ -62,8 +60,6 @@ export class LoginComponent {
             break;
         }
       }, (error: any) => {
-        console.log(error);
-
         swal("Inicio de sesión", "Ocurrió un problema: " + error.error.message, "error");
       })
 

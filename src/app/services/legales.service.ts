@@ -15,6 +15,10 @@ export class LegalesService {
     this.getSociedades()
   }
 
+  updateSociedad(aprobado: boolean, usuario: string, password: string, id: number) {
+    return this.http.put(PRIVATE_BACKEND_URL + "/sociedad/" + id + "/status?aprobado=" + aprobado, { username: usuario, password })
+  }
+
   getSociedades() {
     this.http.get(PRIVATE_BACKEND_URL + "/sociedades?username=" + this.auth.getLocalStorage("username"))
       .subscribe((result: any) => {

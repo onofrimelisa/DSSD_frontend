@@ -13,6 +13,10 @@
 		</span>
 		<span class="example-spacer"></span>
 
+		<small *ngIf="auth.isUserLogged()"
+			class="mr-2">
+			{{auth.role}}
+		</small>
 		<button *ngIf="auth.isUserLogged()"
 			(click)="logout()"
 			type="button"

@@ -9,8 +9,8 @@ import { AuthService } from '../services/auth.service';
   styleUrls: ['./toolbar.component.css']
 })
 export class ToolbarComponent implements OnInit {
-
-  constructor(public auth: AuthService, private router: Router) { }
+  constructor(public auth: AuthService, private router: Router) {
+  }
 
   ngOnInit(): void {
   }
@@ -21,7 +21,7 @@ export class ToolbarComponent implements OnInit {
   }
 
   goToHome() {
-    switch (this.auth.getLocalStorage("role")) {
+    switch (this.auth.role) {
       case MESA_ENTRADAS_ROLE:
         this.router.navigate(["/mesa_entradas/sociedades"])
         break;
