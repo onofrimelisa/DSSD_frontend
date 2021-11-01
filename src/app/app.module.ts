@@ -37,6 +37,7 @@ import { MisRegistrosComponent } from './apoderado/mis-registros/mis-registros.c
 import { SociedadesComponent } from './mesa-entradas/sociedades/sociedades.component';
 import { EstatutoSociedadesComponent } from './legales/estatuto-sociedades/estatuto-sociedades.component';
 import { PublicSociedadComponent } from './public-sociedad/public-sociedad.component';
+import { QrCodeModule } from 'ng-qrcode';
 
 @NgModule({
   declarations: [
@@ -68,7 +69,8 @@ import { PublicSociedadComponent } from './public-sociedad/public-sociedad.compo
     MatSelectModule,
     MatTableModule,
     MatCardModule,
-    MatListModule
+    MatListModule,
+    QrCodeModule
   ],
   exports: [
   ],

@@ -19,6 +19,7 @@ export class SociedadesComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    this.mesaEntradas.getSociedades()
   }
 
   aprobarSociedad(id: number) {
