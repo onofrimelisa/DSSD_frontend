@@ -84,6 +84,13 @@
 					title="Corregir">
 					<mat-icon>edit</mat-icon>
 				</button>
+				<button *ngIf="element.expediente && element.status[0].status == 'LEGALES_APROBADO'"
+					(click)="verInfoPublica(element.expediente.id)"
+					mat-mini-fab
+					color="primary"
+					title="Ver información pública">
+					<mat-icon>info</mat-icon>
+				</button>
 			</div>
 		</td>
 	</ng-container>
