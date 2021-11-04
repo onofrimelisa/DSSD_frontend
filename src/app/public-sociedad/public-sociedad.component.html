@@ -1,5 +1,5 @@
 <h1>
-	Información pública de Sociedad Anónima
+	Información pública de Sociedad Anónima: Test SA
 </h1>
 
 <br>
@@ -15,35 +15,39 @@
 				{{sociedadAnonima.correoElectronico}}
 			</mat-card-subtitle>
 		</mat-card-header>
-		<qr-code value="localhost:4200/public/sociedad"
-			size="300"
-			errorCorrectionLevel="M"></qr-code>
 		<mat-card-content>
-			<p>
-				<b>Domicilio Real:</b>
-				{{sociedadAnonima.domicilioReal}}
-			</p>
-			<p>
-				<b>Domicilio Real:</b>
-				{{sociedadAnonima.domicilioLegal}}
-			</p>
-			<p>
-				<b>Fecha de creación:</b>
-				{{sociedadAnonima.fechaCreacion}}
-			</p>
-			<p>
-				<b>Apoderado:</b>
-				{{sociedadAnonima.apoderado.nombre}} {{sociedadAnonima.apoderado.apellido}}
-			</p>
-		</mat-card-content>
-		<br>
-		<h2>Socios:</h2>
-		<mat-list role="list">
-			<mat-list-item *ngFor="let socio of sociedadAnonima.socios"
-				role="listitem">
-				{{socio.nombre}} {{socio.apellido}}
-			</mat-list-item>
-		</mat-list>
-	</mat-card>
+			<div class="row">
+				<div class="col">
+					<qr-code value="localhost:4200/public/sociedad/1"
+						size="300"
+						errorCorrectionLevel="M"></qr-code>
+				</div>
+				<div class="col">
+					<p>
+						<b>Domicilio Real:</b>
+						{{sociedadAnonima.domicilioReal}}
+					</p>
+					<p>
+						<b>Domicilio Real:</b>
+						{{sociedadAnonima.domicilioLegal}}
+					</p>
+					<p>
+						<b>Fecha de creación:</b>
+						{{sociedadAnonima.fechaCreacion | date}}
+					</p>
+					<p>
+						<b>Apoderado:</b>
+						{{sociedadAnonima.apoderado.nombre}} {{sociedadAnonima.apoderado.apellido}}
+					</p>
 
+					<mat-list role="list">
+						<h2>Socios:</h2>
+						<p *ngFor="let socio of sociedadAnonima.socios">
+							{{socio.nombre}} {{socio.apellido}} {{socio.aportes}}%
+						</p>
+					</mat-list>
+				</div>
+			</div>
+		</mat-card-content>
+	</mat-card>
 </div>
