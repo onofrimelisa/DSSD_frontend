@@ -3,6 +3,7 @@ import { Socio } from "./Socio";
 
 export class SociedadAnonima {
   id: number | undefined;
+  expediente: any
 
   constructor(
     public nombre: string,

@@ -25,7 +25,7 @@ export class MisRegistrosComponent implements OnInit, OnDestroy {
   }
 
   verInfoPublica(id: number) {
-    this.router.navigate(["public/sociedad", id])
+    this.router.navigate(["/public", id])
   }
 
 }

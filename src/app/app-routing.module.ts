@@ -13,7 +13,7 @@ const routes: Routes = [
   { path: 'apoderado/sociedades', component: MisRegistrosComponent },
   { path: 'mesa_entradas/sociedades', component: SociedadesComponent },
   { path: 'legales/sociedades', component: EstatutoSociedadesComponent },
-  { path: 'public/sociedad/:id', component: PublicSociedadComponent },
+  { path: 'public/:id', component: PublicSociedadComponent },
   { path: '', pathMatch: 'full', redirectTo: 'login' },
   { path: '**', pathMatch: 'full', redirectTo: 'login' },
 ];

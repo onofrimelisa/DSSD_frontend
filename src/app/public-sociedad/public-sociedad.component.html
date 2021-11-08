@@ -1,10 +1,11 @@
-<h1>
-	Información pública de Sociedad Anónima: Test SA
+<h1 *ngIf="!loading && sociedadAnonima">
+	Información pública de Sociedad Anónima: {{sociedadAnonima.nombre}}
 </h1>
 
 <br>
 
-<div class="d-flex justify-content-center">
+<div *ngIf="!loading && sociedadAnonima"
+	class="d-flex justify-content-center">
 	<mat-card *ngIf="sociedadAnonima"
 		class="example-card">
 		<mat-card-header>
@@ -18,7 +19,7 @@
 		<mat-card-content>
 			<div class="row">
 				<div class="col">
-					<qr-code value="localhost:4200/public/sociedad/1"
+					<qr-code [value]="'localhost:4200/public/' + sociedadAnonima.expediente.id"
 						size="300"
 						errorCorrectionLevel="M"></qr-code>
 				</div>

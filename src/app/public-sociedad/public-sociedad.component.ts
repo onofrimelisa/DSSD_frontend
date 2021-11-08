@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { APODERADO_ROLE } from '../app-constants';
 import { SociedadAnonima, Socio } from '../interfaces';
+import { PublicService } from '../services/public.service';
 
 @Component({
   selector: 'app-public-sociedad',
@@ -9,17 +11,21 @@ import { SociedadAnonima, Socio } from '../interfaces';
 })
 export class PublicSociedadComponent implements OnInit {
   sociedadAnonima: SociedadAnonima | undefined;
+  loading: boolean = true
 
-  constructor() {
-    let socio1 = new Socio("Lorenzo", "Repetto", 60)
-    let socio2 = new Socio("Cristian", "Giambruni", 40)
-    let socios: Socio[] = []
-    socios.push(socio1)
-    socios.push(socio2)
-    this.sociedadAnonima = new SociedadAnonima("Test SA", new Date(), "466 City Bell", "47 número 830", "melisa2648@gmail.com", socios, new Socio("Lorenzo", "Repetto", 60), [], APODERADO_ROLE, "")
+  constructor(private route: ActivatedRoute, private _public: PublicService) {
+
   }
 
   ngOnInit(): void {
+    const routeParams = this.route.snapshot.paramMap
+    const sociedadId = Number(routeParams.get('id'))
+    console.log(sociedadId)
+
+    this._public.getInfoPublicaSociedad(sociedadId).subscribe((data: any) => {
+      this.sociedadAnonima = data
+      this.loading = false
+    })
   }
 
 }

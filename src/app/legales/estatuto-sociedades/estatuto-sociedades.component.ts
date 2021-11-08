@@ -24,10 +24,10 @@ export class EstatutoSociedadesComponent implements OnInit, OnDestroy {
 
   aprobarSociedad(id: number) {
     this.legales.updateSociedad(true, this.usuarioInfo.username, this.usuarioInfo.password, id)
-      .subscribe((data) => {
+      .subscribe((data: any) => {
         this.legales.getSociedades()
         swal("Aprobar Estatuto", "La operación se realizó correctamente", "success");
-        this.router.navigate(["public/sociedad/1"])
+        this.router.navigate(["/public", data.expediente.id])
       }, (error) => {
         swal("Aprobar Estatuto", "Ocurrió un problema: " + error.error.message, "error");
       })
