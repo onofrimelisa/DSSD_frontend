@@ -34,8 +34,13 @@ export class ToolbarComponent implements OnInit {
         this.router.navigate(["/apoderado/sociedades"])
         break;
 
+      case "":
+        this.router.navigate(["/admin"])
+        break;
+
       default:
-        this.router.navigate(["/login"])
+        console.log("ROLE: ", this.auth.role)
+        this.router.navigate(["/admin"])
         break;
     }
   }

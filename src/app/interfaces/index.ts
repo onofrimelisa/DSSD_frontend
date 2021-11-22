@@ -4,6 +4,7 @@ import { Language } from "./Language";
 import { State } from "./State";
 import { Country } from "./Country";
 import { Continent } from "./Continent";
+import { Monitoreo } from "./Monitoreo"
 
 export {
     SociedadAnonima,
@@ -11,5 +12,6 @@ export {
     Language,
     State,
     Country,
-    Continent
+    Continent,
+    Monitoreo
 }

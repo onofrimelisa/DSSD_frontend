@@ -37,6 +37,7 @@ export class GraphqlService {
                 }
                 continent {
                   code
+                  name
                 }
               }
             }

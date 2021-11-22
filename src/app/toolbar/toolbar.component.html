@@ -15,7 +15,7 @@
 
 		<small *ngIf="auth.isUserLogged()"
 			class="mr-2">
-			{{auth.role}}
+			{{auth.role || "ADMINISTRADOR"}}
 		</small>
 		<button *ngIf="auth.isUserLogged()"
 			(click)="logout()"

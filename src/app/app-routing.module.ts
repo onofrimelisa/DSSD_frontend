@@ -6,9 +6,11 @@ import { EstatutoSociedadesComponent } from './legales/estatuto-sociedades/estat
 import { LoginComponent } from './login/login.component';
 import { SociedadesComponent } from './mesa-entradas/sociedades/sociedades.component';
 import { PublicSociedadComponent } from './public-sociedad/public-sociedad.component';
+import { AdministracionComponent } from './administracion/administracion.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
+  { path: 'admin', component: AdministracionComponent },
   { path: 'registro', component: CreateFormComponent },
   { path: 'apoderado/sociedades', component: MisRegistrosComponent },
   { path: 'mesa_entradas/sociedades', component: SociedadesComponent },

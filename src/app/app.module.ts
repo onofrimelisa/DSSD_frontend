@@ -19,6 +19,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatTableModule } from '@angular/material/table';
 import { MatCardModule } from '@angular/material/card';
 import { MatListModule } from '@angular/material/list';
+import { ChartsModule } from 'ng2-charts';
 
 // Apollo Client
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -38,6 +39,7 @@ import { SociedadesComponent } from './mesa-entradas/sociedades/sociedades.compo
 import { EstatutoSociedadesComponent } from './legales/estatuto-sociedades/estatuto-sociedades.component';
 import { PublicSociedadComponent } from './public-sociedad/public-sociedad.component';
 import { QrCodeModule } from 'ng-qrcode';
+import { AdministracionComponent } from './administracion/administracion.component';
 
 @NgModule({
   declarations: [
@@ -49,6 +51,7 @@ import { QrCodeModule } from 'ng-qrcode';
     SociedadesComponent,
     EstatutoSociedadesComponent,
     PublicSociedadComponent,
+    AdministracionComponent,
   ],
   imports: [
     BrowserModule,
@@ -70,7 +73,8 @@ import { QrCodeModule } from 'ng-qrcode';
     MatTableModule,
     MatCardModule,
     MatListModule,
-    QrCodeModule
+    QrCodeModule,
+    ChartsModule
   ],
   exports: [
   ],

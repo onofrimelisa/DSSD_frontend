@@ -1,0 +1,66 @@
+<div *ngIf="!loading"
+	class="container">
+
+	<h1>
+		Dashboards de Monitoreo
+	</h1>
+
+	<div class="row">
+		<div class="col">
+			<H2 class="d-flex justify-content-center">
+				Continentes a los que más se exporta
+			</H2>
+			<canvas [data]="pieChartData"
+				[labels]="pieChartLabels"
+				[chartType]="pieChartType"
+				[colors]="pieChartColors"
+				[legend]="pieChartLegend"
+				baseChart>
+			</canvas>
+		</div>
+		<div class="col">
+			<H2 class="d-flex justify-content-center">
+				Países a los que más se exporta
+			</H2>
+			<canvas [data]="doughnutChartData"
+				[labels]="doughnutChartLabels"
+				[chartType]="doughnutChartType"
+				[colors]="pieChartColors"
+				baseChart>
+			</canvas>
+		</div>
+	</div>
+
+	<br>
+
+	<div class="row">
+		<div class="col">
+			<H2 class="d-flex justify-content-center">
+				Lenguajes de los países a los que más se exporta
+			</H2>
+			<canvas [data]="pieChartDataIdiomas"
+				[labels]="pieChartLabelsIdiomas"
+				[chartType]="pieChartType"
+				[colors]="pieChartColors"
+				[legend]="pieChartLegend"
+				baseChart>
+			</canvas>
+		</div>
+		<div class="col">
+			<H2 class="d-flex justify-content-center">
+				Estadísticas por área
+			</H2>
+			<canvas [datasets]="barChartData"
+				[colors]="barChartColors"
+				[labels]="barChartLabels"
+				[chartType]="barChartType"
+				baseChart>
+			</canvas>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col"></div>
+		<div class="col"></div>
+	</div>
+</div>
