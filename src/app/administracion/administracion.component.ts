@@ -1,10 +1,11 @@
 import { Component, OnInit, ɵsetCurrentInjector } from '@angular/core';
-import { Language, Monitoreo } from '../interfaces';
+import { Continent, Language, Monitoreo } from '../interfaces';
 import { ChartType, ChartOptions, ChartDataSets } from 'chart.js';
 import { MultiDataSet, Label } from 'ng2-charts';
 import { HttpClient } from '@angular/common/http';
 import { PRIVATE_BACKEND_URL } from '../app-constants';
 import { TestBed } from '@angular/core/testing';
+import { GraphqlService } from '../services/graphql.service';
 
 @Component({
   selector: 'app-administracion',
@@ -36,8 +37,10 @@ export class AdministracionComponent implements OnInit {
       backgroundColor: ['rgba(255,0,0,0.3)', 'rgba(0,255,0,0.3)', 'rgba(0,0,255,0.3)', 'rgba(245,40,145,0.41)'],
     },
   ];
+  continentes: string[] = []
+  difference: string[] = []
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, public graphqlService: GraphqlService) { }
 
   ngOnInit(): void {
     this.getDataForMonitoring()
@@ -45,60 +48,69 @@ export class AdministracionComponent implements OnInit {
 
   getDataForMonitoring() {
     this.http.get(PRIVATE_BACKEND_URL + "/metricas").subscribe((result: any) => {
-      this.loading = false
-      this.dashboard = result
-      console.log(this.dashboard)
+      this.graphqlService.get().valueChanges.subscribe((continents: any) => {
+        this.loading = false
+        this.dashboard = result
+        console.log(this.dashboard)
 
-      // DOUGHNUT CHART PAISES
-      this.doughnutChartLabels = [
-        this.dashboard.paisesMaxExportaciones[0].pais.name,
-        this.dashboard.paisesMaxExportaciones[1].pais.name,
-        this.dashboard.paisesMaxExportaciones[2].pais.name,
-        this.dashboard.paisesMaxExportaciones[3].pais.name,
-        this.dashboard.paisesMaxExportaciones[4].pais.name,
-      ];
-      this.doughnutChartData = [
-        [
-          this.dashboard.paisesMaxExportaciones[0].count,
-          this.dashboard.paisesMaxExportaciones[1].count,
-          this.dashboard.paisesMaxExportaciones[2].count,
-          this.dashboard.paisesMaxExportaciones[3].count,
-          this.dashboard.paisesMaxExportaciones[4].count
+        this.continentes = continents?.data?.continents;
+
+        this.continentes = this.graphqlService.continents.map((continent) => { return continent.name })
+        let continentesConExportaciones = this.dashboard.continentesConExportaciones.map((continent) => { return continent.name })
+        this.difference = this.continentes.filter(continent => { return !continentesConExportaciones.includes(continent) })
+
+        // DOUGHNUT CHART PAISES
+        this.doughnutChartLabels = [
+          this.dashboard.paisesMaxExportaciones[0].pais.name,
+          this.dashboard.paisesMaxExportaciones[1].pais.name,
+          this.dashboard.paisesMaxExportaciones[2].pais.name,
+          this.dashboard.paisesMaxExportaciones[3].pais.name,
+          this.dashboard.paisesMaxExportaciones[4].pais.name,
+        ];
+        this.doughnutChartData = [
+          [
+            this.dashboard.paisesMaxExportaciones[0].count,
+            this.dashboard.paisesMaxExportaciones[1].count,
+            this.dashboard.paisesMaxExportaciones[2].count,
+            this.dashboard.paisesMaxExportaciones[3].count,
+            this.dashboard.paisesMaxExportaciones[4].count
+          ]
+        ];
+
+        // PIE CHART CONTINENTES
+        this.pieChartLabels = [
+          this.dashboard.continentesMaxExportaciones[0].name,
+          this.dashboard.continentesMaxExportaciones[1].name,
+          this.dashboard.continentesMaxExportaciones[2].name,
         ]
-      ];
+        this.pieChartData = [1, 1, 1];
 
-      // PIE CHART CONTINENTES
-      this.pieChartLabels = [
-        this.dashboard.continentesMaxExportaciones[0].name,
-        this.dashboard.continentesMaxExportaciones[1].name,
-        this.dashboard.continentesMaxExportaciones[2].name,
-      ]
-      this.pieChartData = [1, 1, 1];
+        // CHART IDIOMAS
+        const idiomas: string[] = this.dashboard.paisesMaxExportaciones.reduce((curent: string[], country, b) => {
+          country.pais.languages.map((lenguaje: Language) => {
+            curent.push(lenguaje.name)
+          })
+          return curent
+        }, [])
 
-      // CHART IDIOMAS
-      const idiomas: string[] = this.dashboard.paisesMaxExportaciones.reduce((curent: string[], country, b) => {
-        country.pais.languages.map((lenguaje: Language) => {
-          curent.push(lenguaje.name)
-        })
-        return curent
-      }, [])
+        const idiomasSet = [...new Set(idiomas)]
 
-      const idiomasSet = [...new Set(idiomas)]
+        this.pieChartLabelsIdiomas = [...idiomasSet]
+        this.pieChartDataIdiomas = [...Array(idiomasSet.length).fill(1)]
 
-      this.pieChartLabelsIdiomas = [...idiomasSet]
-      this.pieChartDataIdiomas = [...Array(idiomasSet.length).fill(1)]
+        // CHART STATUS MAP
+        const keys = Object.keys(this.dashboard.statusMap)
+        const values = Object.values(this.dashboard.statusMap)
+        this.barChartLabels = [""]
+        this.barChartData = [
+          { data: [values[0]], label: keys[0] },
+          { data: [values[1]], label: keys[1] },
+          { data: [values[2]], label: keys[2] },
+          { data: [values[3]], label: keys[3] }
+        ]
 
-      // CHART STATUS MAP
-      const keys = Object.keys(this.dashboard.statusMap)
-      const values = Object.values(this.dashboard.statusMap)
-      this.barChartLabels = [""]
-      this.barChartData = [
-        { data: [values[0]], label: keys[0] },
-        { data: [values[1]], label: keys[1] },
-        { data: [values[2]], label: keys[2] },
-        { data: [values[3]], label: keys[3] }
-      ]
 
+      });
     }, (err) => {
       console.error(err)
     })

@@ -46,11 +46,42 @@ export class GraphqlService {
       })
       .valueChanges.subscribe((result: any) => {
         this.continents = result?.data?.continents;
+        console.log(this.continents)
         this.loading = false
-
-        console.log(this.continents);
-
       });
+  }
+
+  get() {
+    return this.apollo
+      .watchQuery({
+        query: gql`
+          {
+            continents {
+              name
+              code
+              countries {
+                code
+                name
+                languages {
+                  code
+                  name
+                }
+                states {
+                  code
+                  name
+                  country {
+                    name
+                  }
+                }
+                continent {
+                  code
+                  name
+                }
+              }
+            }
+          }
+        `,
+      })
   }
 
   fillCountries() { }

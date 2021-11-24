@@ -6,7 +6,7 @@
 	</h1>
 
 	<div class="row">
-		<div class="col">
+		<div class="col-6">
 			<H2 class="d-flex justify-content-center">
 				Continentes a los que más se exporta
 			</H2>
@@ -18,7 +18,7 @@
 				baseChart>
 			</canvas>
 		</div>
-		<div class="col">
+		<div class="col-6">
 			<H2 class="d-flex justify-content-center">
 				Países a los que más se exporta
 			</H2>
@@ -34,7 +34,7 @@
 	<br>
 
 	<div class="row">
-		<div class="col">
+		<div class="col-6">
 			<H2 class="d-flex justify-content-center">
 				Lenguajes de los países a los que más se exporta
 			</H2>
@@ -46,7 +46,7 @@
 				baseChart>
 			</canvas>
 		</div>
-		<div class="col">
+		<div class="col-6">
 			<H2 class="d-flex justify-content-center">
 				Estadísticas por área
 			</H2>
@@ -59,8 +59,40 @@
 		</div>
 	</div>
 
+	<br>
+
 	<div class="row">
-		<div class="col"></div>
-		<div class="col"></div>
+		<div class="col-4">
+			<H2 class="d-flex justify-content-center">
+				Continentes a los que se exporta
+			</H2>
+			<mat-list role="list">
+				<mat-list-item *ngFor="let continente of dashboard?.continentesConExportaciones"
+					role="listitem">
+					{{continente.name}}
+				</mat-list-item>
+			</mat-list>
+		</div>
+		<div class="col-4">
+			<H2 class="d-flex justify-content-center">
+				Continentes a los que no se exporta
+			</H2>
+			<mat-list role="list">
+				<mat-list-item *ngFor="let continente of difference"
+					role="listitem">
+					{{continente}}
+				</mat-list-item>
+			</mat-list>
+		</div>
+		<div class="col-4">
+			<H2 class="d-flex justify-content-center">
+				Tiempo promedio de finalización de procesos
+			</H2>
+			<div style="text-align:center">
+				<span class="dot d-flex align-items-center justify-content-center">
+					{{dashboard?.tiempoPromedioProcesos}}
+				</span>
+			</div>
+		</div>
 	</div>
 </div>
