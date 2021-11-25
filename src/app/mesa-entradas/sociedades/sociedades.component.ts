@@ -1,6 +1,5 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { PRIVATE_BACKEND_URL } from 'src/app/app-constants';
 import { AuthService } from 'src/app/services/auth.service';
 import { MesaEntradasService } from 'src/app/services/mesa-entradas.service';
 import swal from 'sweetalert';
@@ -28,6 +27,7 @@ export class SociedadesComponent implements OnInit, OnDestroy {
         this.mesaEntradas.getSociedades()
         swal("Aprobar Sociedad", "La operación se realizó correctamente", "success");
       }, (error) => {
+        console.log(error)
         swal("Aprobar Sociedad", "Ocurrió un problema: " + error.error.message, "error");
       })
 

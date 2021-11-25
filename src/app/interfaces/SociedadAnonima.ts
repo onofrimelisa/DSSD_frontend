@@ -18,3 +18,13 @@ export class SociedadAnonima {
     public username: string
   ) { }
 }
+
+export class UpdateSociedadAnonima {
+  constructor(
+    public nombre: string,
+    public fechaCreacion: Date,
+    public domicilioLegal: string,
+    public domicilioReal: string,
+    public correoElectronico: string,
+  ) { }
+}

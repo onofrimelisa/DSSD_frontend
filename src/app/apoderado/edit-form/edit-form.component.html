@@ -1,0 +1,121 @@
+<div *ngIf="!loading"
+	class="container">
+
+	<h1>
+		Editar sociedad anónima {{sociedadAnonima?.nombre}}
+	</h1>
+
+	<form [formGroup]="formGroup"
+		(ngSubmit)="onSubmit()">
+
+		<div class="row">
+			<div class="col">
+				<p>
+					<mat-form-field appearance="outline">
+						<mat-label>Nombre</mat-label>
+						<input formControlName="nombre"
+							matInput
+							placeholder="Nombre"
+							required>
+						<mat-icon matSuffix>person_pin</mat-icon>
+						<mat-error *ngIf="formGroup.controls.nombre.invalid">
+							{{getRequiredErrorMessage(formGroup.controls.nombre)}}
+						</mat-error>
+						<mat-hint>Alfanumérico</mat-hint>
+					</mat-form-field>
+				</p>
+			</div>
+			<div class="col">
+				<p>
+					<mat-form-field appearance="outline">
+						<mat-label>Domicilio Real</mat-label>
+						<input formControlName="domicilioReal"
+							matInput
+							placeholder="Domicilio Real"
+							required>
+						<mat-icon matSuffix>home</mat-icon>
+						<mat-error *ngIf="formGroup.controls.domicilioReal.invalid">
+							{{getRequiredErrorMessage(formGroup.controls.domicilioReal)}}
+						</mat-error>
+						<mat-hint>Alfanumérico</mat-hint>
+					</mat-form-field>
+				</p>
+			</div>
+			<div class="col">
+				<p>
+					<mat-form-field appearance="outline">
+						<mat-label>Domicilio Legal</mat-label>
+						<input formControlName="domicilioLegal"
+							matInput
+							placeholder="Domicilio Legal"
+							required>
+						<mat-icon matSuffix>home</mat-icon>
+						<mat-error *ngIf="formGroup.controls.domicilioLegal.invalid">
+							{{getRequiredErrorMessage(formGroup.controls.domicilioLegal)}}
+						</mat-error>
+						<mat-hint>Alfanumérico</mat-hint>
+					</mat-form-field>
+				</p>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-4">
+				<p>
+					<mat-form-field appearance="outline">
+						<mat-label>Email del apoderado</mat-label>
+						<input formControlName="email"
+							matInput
+							placeholder="email@example.com"
+							required>
+						<mat-error *ngIf="formGroup.controls.email.invalid">
+							{{getEmailErrorMessage(formGroup.controls.email)}}
+						</mat-error>
+						<mat-icon matSuffix>email</mat-icon>
+						<mat-hint>Email</mat-hint>
+					</mat-form-field>
+				</p>
+			</div>
+			<div class="col-4 pr-4">
+				<p>
+					<mat-form-field appearance="outline">
+						<mat-label>Fecha de creación</mat-label>
+
+						<input [matDatepicker]="datepicker"
+							matInput
+							formControlName="fecha"
+							placeholder="Fecha de creación"
+							required>
+						<mat-datepicker-toggle [for]="datepicker"
+							matSuffix></mat-datepicker-toggle>
+						<mat-datepicker #datepicker>
+							<mat-datepicker-actions>
+								<button mat-button
+									matDatepickerCancel>
+									Cancel
+								</button>
+								<button mat-raised-button
+									color="primary"
+									matDatepickerApply>
+									Apply
+								</button>
+							</mat-datepicker-actions>
+						</mat-datepicker>
+						<mat-error *ngIf="formGroup.controls.fecha.invalid">
+							{{getRequiredErrorMessage(formGroup.controls.fecha)}}
+						</mat-error>
+					</mat-form-field>
+				</p>
+			</div>
+
+		</div>
+		<br>
+
+		<button [disabled]="!(formGroup.valid)"
+			type="submit"
+			mat-raised-button
+			color="primary">
+			Editar
+		</button>
+	</form>
+</div>

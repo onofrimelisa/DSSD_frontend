@@ -113,12 +113,15 @@ export class CreateFormComponent {
     }
     formData.append('sociedad_anonima', JSON.stringify(this.sociedadAnonima));
 
+    console.log(this.sociedadAnonima)
+
     this.http.post(PRIVATE_BACKEND_URL + "/sociedad", formData)
       .subscribe((res) => {
         swal("Registro de sociedad anónima", "La operación se realizó correctamente", "success");
         this.apoderado.getSociedades()
         this.router.navigate(["/apoderado/sociedades"])
       }, (error) => {
+        console.log(error)
         swal("Registro de sociedad anónima", "Ocurrió un problema", "error");
       })
   }

@@ -79,7 +79,9 @@
 		<td *matCellDef="let element"
 			mat-cell>
 			<div>
-				<button mat-mini-fab
+				<button *ngIf="element.status[0].status == 'MESA_ENTRADAS_DESAPROBADO'"
+					(click)="editar(element.expediente.id)"
+					mat-mini-fab
 					color="primary"
 					title="Corregir">
 					<mat-icon>edit</mat-icon>

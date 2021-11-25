@@ -40,6 +40,7 @@ import { EstatutoSociedadesComponent } from './legales/estatuto-sociedades/estat
 import { PublicSociedadComponent } from './public-sociedad/public-sociedad.component';
 import { QrCodeModule } from 'ng-qrcode';
 import { AdministracionComponent } from './administracion/administracion.component';
+import { EditFormComponent } from './apoderado/edit-form/edit-form.component';
 
 @NgModule({
   declarations: [
@@ -52,6 +53,7 @@ import { AdministracionComponent } from './administracion/administracion.compone
     EstatutoSociedadesComponent,
     PublicSociedadComponent,
     AdministracionComponent,
+    EditFormComponent,
   ],
   imports: [
     BrowserModule,

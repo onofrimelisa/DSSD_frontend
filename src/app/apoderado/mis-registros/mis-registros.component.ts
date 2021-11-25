@@ -28,4 +28,7 @@ export class MisRegistrosComponent implements OnInit, OnDestroy {
     this.router.navigate(["/public", id])
   }
 
+  editar(id: number) {
+    this.router.navigate(["/apoderado/editar", id])
+  }
 }
