@@ -51,6 +51,8 @@ export class AuthService {
   }
 
   logout() {
-    localStorage.clear()
+    this.http.post(BACKEND_URL + "/logout", {}).subscribe(() => {
+      localStorage.clear()
+    })
   }
 }

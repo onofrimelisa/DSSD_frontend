@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MESA_ENTRADAS_ROLE, LEGALES_ROLE, APODERADO_ROLE } from '../app-constants';
 import { AuthService } from '../services/auth.service';
+import swal from 'sweetalert';
 
 @Component({
   selector: 'app-toolbar',
@@ -17,6 +18,7 @@ export class ToolbarComponent implements OnInit {
 
   logout() {
     this.auth.logout()
+    swal("Cierre de sesión", "La operación se realizó correctamente", "success");
     this.router.navigate(["/login"])
   }
 
